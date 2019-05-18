@@ -1,0 +1,16 @@
+{% extends "slide_show.j2.ncl" %}
+{% block medias %}
+    {% for i in list_files %}
+        <media id="{{'image' ~ loop.index}}" src="{{i}}" descriptor="ImageDes"/>
+    {% endfor %}
+{% endblock medias %}
+{% block links %}
+    {% for i in range(list_files | length-1) %}
+        <link id="{{'lMoveForward' ~ loop.index}}" xconnector="conBase#onBeginStart_delay">
+            <bind role="onBegin" component="{{'image' ~ loop.index}}"/>
+            <bind role="start" component="{{'image' ~ (loop.index+1)}}">
+                <bindParam name="delay" value="5s"/>
+            </bind>
+        </link>
+    {% endfor %}
+{%endblock links %}
