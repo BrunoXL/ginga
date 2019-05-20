@@ -6,11 +6,9 @@
 {% endblock medias %}
 {% block links %}
     {% for i in range(list_files | length-1) %}
-        <link id="{{'lMoveForward' ~ loop.index}}" xconnector="conBase#onBeginStart_delay">
-            <bind role="onBegin" component="{{'image' ~ loop.index}}"/>
-            <bind role="start" component="{{'image' ~ (loop.index+1)}}">
-                <bindParam name="delay" value="5s"/>
-            </bind>
+        <link id="{{'lMoveForward' ~ loop.index}}" xconnector="conBase#onEndStart">
+            <bind role="onEnd" component="{{'image' ~ loop.index}}"/>
+            <bind role="start" component="{{'image' ~ (loop.index+1)}}"/>
         </link>
     {% endfor %}
 {%endblock links %}

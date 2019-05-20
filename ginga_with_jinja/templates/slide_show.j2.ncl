@@ -9,7 +9,7 @@
             <region id="main" width="100%" height="100%" zIndex="1"/>
         </regionBase>
         <descriptorBase>
-            <descriptor id="ImageDes" region="main"/>
+            <descriptor id="ImageDes" region="main" explicitDur="5s"/>
         </descriptorBase>
     </head>
     <body>
