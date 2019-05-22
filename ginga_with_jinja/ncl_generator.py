@@ -1,22 +1,27 @@
-from jinja2 import Environment, FileSystemLoader, select_autoescape
+from jinja2 import Environment, FileSystemLoader, select_autoescape, meta
 from pathlib import Path
-import os 
+import json
+import re
 
-def get_media(path):
-    """ Gets all files from path and save them on a list
+def deserialize_json(name):
+    """ Deserealize a json file given as padding document 
+        Information retrieves from it is used to fill in
+        jinja templates
     
-    :param path: absolute path for this script
-    return: 
+    :param name: name of padding document
     """
-    files = os.listdir(path=path)
-    if len(files) == 0:
-        raise Exception(path) 
-    files = [path.joinpath(i) for i in files]
-    return files
-
+    if Path(name).suffix != '.json':
+        raise Exception(name)
+    with open(name, "r") as file:    
+        des_json = json.load(file)
+    return des_json
+      
 
 if __name__ == "__main__":
     abs_path = Path.cwd()
+    #TODO: get name from value passed on command line
+    padding_doc = "padding.json"
+
     env = Environment(
         loader=FileSystemLoader(str(abs_path.joinpath('templates'))),
         autoescape=select_autoescape(['ncl', 'xml']),
@@ -24,16 +29,18 @@ if __name__ == "__main__":
         lstrip_blocks=True
     )
 
-    template = env.get_template('slide_show.j2')
-
-    path = abs_path.joinpath('media')
+    #TODO:find a way to pass the 'younger' child template
+    
+    template = env.get_template('medias.ncl.j2')
 
     try:
-        context = {'list_files': get_media(path)}
+        context = {'files_list': deserialize_json(padding_doc)}
+        print (context)
     except Exception as e:
-        print ("Error: No media associated to", e.args[0])
+        msg  = "Error: Padding document '{e}' in wrong format".format(e=e.args[0])
+        print (msg)
     else:
         content = template.render(context)
-        path = abs_path.joinpath('slide_show.ncl')   
+        path = abs_path.joinpath('slideShow.ncl')   
         with open(path , "w") as file:
             file.write(content)

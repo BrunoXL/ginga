@@ -1,11 +1,11 @@
-{% extends "slide_show.j2.ncl" %}
+{% extends "slide_show.ncl.j2" %}
 {% block medias %}
-    {% for i in list_files %}
-        <media id="{{'image' ~ loop.index}}" src="{{i}}" descriptor="ImageDes"/>
+    {% for i in files_list[0].contents %}
+        <media id="{{'image' ~ loop.index}}" src="{{ 'media/' ~ i.name}}" descriptor="ImageDes"/>
     {% endfor %}
 {% endblock medias %}
 {% block links %}
-    {% for i in range(list_files | length-1) %}
+    {% for i in range(files_list[0].contents | length-1) %}
         <link id="{{'lMoveForward' ~ loop.index}}" xconnector="conBase#onEndStart">
             <bind role="onEnd" component="{{'image' ~ loop.index}}"/>
             <bind role="start" component="{{'image' ~ (loop.index+1)}}"/>

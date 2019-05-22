@@ -14,27 +14,27 @@
     </head>
     <body>
         <port id="startSlideShow" component="image1"/>
-        <media id="image1" src="/home/bruno/repos/ginga/ginga_with_jinja/media/Sunshine@North.jpg" descriptor="ImageDes"/>
-        <media id="image2" src="/home/bruno/repos/ginga/ginga_with_jinja/media/DevushkaZakatPeyzazh_Pole.jpg" descriptor="ImageDes"/>
-        <media id="image3" src="/home/bruno/repos/ginga/ginga_with_jinja/media/StarsOverTheRoad.jpg" descriptor="ImageDes"/>
-        <media id="image4" src="/home/bruno/repos/ginga/ginga_with_jinja/media/PYEUy5n.jpg" descriptor="ImageDes"/>
-        <media id="image5" src="/home/bruno/repos/ginga/ginga_with_jinja/media/AllTheStarsShownToYou.jpg" descriptor="ImageDes"/>
-        <media id="image6" src="/home/bruno/repos/ginga/ginga_with_jinja/media/ParadiseOutsideEarth.jpg" descriptor="ImageDes"/>
-        <media id="image7" src="/home/bruno/repos/ginga/ginga_with_jinja/media/TheCalling.jpg" descriptor="ImageDes"/>
-        <media id="image8" src="/home/bruno/repos/ginga/ginga_with_jinja/media/Wallhaven-527359.jpg" descriptor="ImageDes"/>
-        <media id="image9" src="/home/bruno/repos/ginga/ginga_with_jinja/media/AuroraBorealis.jpg" descriptor="ImageDes"/>
-        <media id="image10" src="/home/bruno/repos/ginga/ginga_with_jinja/media/Tanity.jpg" descriptor="ImageDes"/>
-        <media id="image11" src="/home/bruno/repos/ginga/ginga_with_jinja/media/WinterSun.jpg" descriptor="ImageDes"/>
-        <media id="image12" src="/home/bruno/repos/ginga/ginga_with_jinja/media/YejarSF.jpg" descriptor="ImageDes"/>
-        <media id="image13" src="/home/bruno/repos/ginga/ginga_with_jinja/media/MorningLight.jpg" descriptor="ImageDes"/>
-        <media id="image14" src="/home/bruno/repos/ginga/ginga_with_jinja/media/Teddy-Kelley-.jpg" descriptor="ImageDes"/>
-        <media id="image15" src="/home/bruno/repos/ginga/ginga_with_jinja/media/Wallhaven-415803.jpg" descriptor="ImageDes"/>
-        <media id="image16" src="/home/bruno/repos/ginga/ginga_with_jinja/media/BeADreamer.jpg" descriptor="ImageDes"/>
-        <media id="image17" src="/home/bruno/repos/ginga/ginga_with_jinja/media/ItsTooLate.jpg" descriptor="ImageDes"/>
-        <media id="image18" src="/home/bruno/repos/ginga/ginga_with_jinja/media/NorthernLights-1.jpg" descriptor="ImageDes"/>
-        <media id="image19" src="/home/bruno/repos/ginga/ginga_with_jinja/media/LateNight@Mountains.jpg" descriptor="ImageDes"/>
-        <media id="image20" src="/home/bruno/repos/ginga/ginga_with_jinja/media/AuroraBorealisStars.jpg" descriptor="ImageDes"/>
-        <media id="image21" src="/home/bruno/repos/ginga/ginga_with_jinja/media/Freedom.jpg" descriptor="ImageDes"/>
+        <media id="image1" src="media/AllTheStarsShownToYou.jpg" descriptor="ImageDes"/>
+        <media id="image2" src="media/AuroraBorealis.jpg" descriptor="ImageDes"/>
+        <media id="image3" src="media/AuroraBorealisStars.jpg" descriptor="ImageDes"/>
+        <media id="image4" src="media/BeADreamer.jpg" descriptor="ImageDes"/>
+        <media id="image5" src="media/DevushkaZakatPeyzazh_Pole.jpg" descriptor="ImageDes"/>
+        <media id="image6" src="media/Freedom.jpg" descriptor="ImageDes"/>
+        <media id="image7" src="media/ItsTooLate.jpg" descriptor="ImageDes"/>
+        <media id="image8" src="media/LateNight@Mountains.jpg" descriptor="ImageDes"/>
+        <media id="image9" src="media/MorningLight.jpg" descriptor="ImageDes"/>
+        <media id="image10" src="media/NorthernLights-1.jpg" descriptor="ImageDes"/>
+        <media id="image11" src="media/ParadiseOutsideEarth.jpg" descriptor="ImageDes"/>
+        <media id="image12" src="media/PYEUy5n.jpg" descriptor="ImageDes"/>
+        <media id="image13" src="media/StarsOverTheRoad.jpg" descriptor="ImageDes"/>
+        <media id="image14" src="media/Sunshine@North.jpg" descriptor="ImageDes"/>
+        <media id="image15" src="media/Tanity.jpg" descriptor="ImageDes"/>
+        <media id="image16" src="media/Teddy-Kelley-.jpg" descriptor="ImageDes"/>
+        <media id="image17" src="media/TheCalling.jpg" descriptor="ImageDes"/>
+        <media id="image18" src="media/Wallhaven-415803.jpg" descriptor="ImageDes"/>
+        <media id="image19" src="media/Wallhaven-527359.jpg" descriptor="ImageDes"/>
+        <media id="image20" src="media/WinterSun.jpg" descriptor="ImageDes"/>
+        <media id="image21" src="media/YejarSF.jpg" descriptor="ImageDes"/>
         <link id="lMoveForward1" xconnector="conBase#onEndStart">
             <bind role="onEnd" component="image1"/>
             <bind role="start" component="image2"/>
