@@ -1,4 +1,4 @@
-from jinja2 import Environment, FileSystemLoader, select_autoescape, meta
+from jinja2 import Environment, FileSystemLoader, select_autoescape
 from pathlib import Path
 import json
 import re
@@ -30,8 +30,7 @@ if __name__ == "__main__":
     )
 
     #TODO:find a way to pass the 'younger' child template
-    
-    template = env.get_template('medias.ncl.j2')
+    template = env.get_template('__slide_show.ncl.j2')
 
     try:
         context = {'files_list': deserialize_json(padding_doc)}
