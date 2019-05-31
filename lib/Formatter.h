@@ -70,6 +70,7 @@ public:
   static void setOptionExperimental (Formatter *, const string &, bool);
   static void setOptionOpenGL (Formatter *, const string &, bool);
   static void setOptionSize (Formatter *, const string &, int);
+  static void setOptionTemplate (Formatter *, const string &, string);
 
 private:
   /// @brief Current state.

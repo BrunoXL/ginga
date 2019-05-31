@@ -46,6 +46,7 @@ static gboolean opt_opengl = FALSE;       // toggle OpenGL backend
 static string opt_background = "";        // background color
 static gint opt_width = 800;              // initial window width
 static gint opt_height = 600;             // initial window height
+static string opt_template = "";         // toggle to support templates
 
 static gboolean
 opt_background_cb (unused (const gchar *opt), const gchar *arg,
@@ -92,6 +93,23 @@ opt_version_cb (void)
   _exit (0);
 }
 
+static gboolean
+opt_template_cb (unused (const gchar *opt), const gchar *arg,
+                unused (gpointer data), GError **err)
+{
+  g_assert_nonnull(arg);
+  // if(!xstrhassuffix(arg, ".j2"))
+  //   goto syntax_error;
+
+  syntax_error:
+    g_set_error (err, G_OPTION_ERROR, G_OPTION_ERROR_BAD_VALUE,
+                "Invalid template file '%s'", arg);
+
+  opt_template = string (arg);
+  return TRUE;
+}
+
+
 static GOptionEntry options[]
     = { { "background", 'b', 0, G_OPTION_ARG_CALLBACK,
           pointerof (opt_background_cb), "Set background color", "COLOR" },
@@ -108,6 +126,8 @@ static GOptionEntry options[]
         { "version", 0, G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK,
           pointerof (opt_version_cb), "Print version information and exit",
           NULL },
+        { "template", 't', 0, G_OPTION_ARG_CALLBACK, 
+          pointerof (opt_template_cb), "Enable templates usage", "FILENAME"},
         { NULL, 0, 0, G_OPTION_ARG_NONE, NULL, NULL, NULL } };
 
 // Error handling.
@@ -405,6 +425,7 @@ main (int argc, char **argv)
   opts.experimental = opt_experimental;
   opts.opengl = opt_opengl;
   opts.background = string (opt_background);
+  opts.templates = string (opt_template);
   GINGA = Ginga::create (&opts);
   g_assert_nonnull (GINGA);
 

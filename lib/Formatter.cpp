@@ -28,6 +28,8 @@ along with Ginga.  If not, see <https://www.gnu.org/licenses/>.  */
 #include "Parser.h"
 #include "PlayerText.h"
 
+#include "Python.h"
+
 /**
  * @file Formatter.cpp
  * @brief The Formatter class.
@@ -47,6 +49,7 @@ static GingaOptions opts_defaults = {
   false, // experimental
   false, // opengl
   "",    // background ("" == none)
+  "",    // templates  ("" == none)
 };
 
 // Option data.
@@ -73,6 +76,7 @@ static map<string, GingaOptionData> opts_table = {
   OPTS_ENTRY (experimental, G_TYPE_BOOLEAN, Experimental),
   OPTS_ENTRY (height, G_TYPE_INT, Size),
   OPTS_ENTRY (opengl, G_TYPE_BOOLEAN, OpenGL),
+  // OPTS_ENTRY (template, G_TYPE_STRING, Template),
   OPTS_ENTRY (width, G_TYPE_INT, Size),
 };
 
@@ -144,6 +148,33 @@ Formatter::start (const string &file, string *errmsg)
     }
 #endif
 
+  if (xstrhassuffix (file, ".json"))
+  {
+    // Make @docs receive the output of python code (a NCL document)
+    //_doc = 
+
+    // Py_Initialize();
+    // FILE *pythonFile = fopen("test.py","r");
+    // int status = PyRun_SimpleFileEx(file,"test.py",1);
+    // assert(status == 0);    
+    // fclose(pythonFile);
+    // Py_Finalize();
+    // nclFile = fopen()
+    // _doc = Parser::parseFile (nclFile, w, h, errmsg);
+
+    const char *command = "./ncl_generator\
+                           padding.json\
+                           slide_show_child.ncl.j2";
+    // gchar *command = g_strdup("python3 ");
+    // gchar *cmd = g_strconcat(command, file);
+    if(system(command) == -1)
+    {
+      ERROR ("Unable to call command %s", command);
+    }
+    if (unlikely (_doc == nullptr))
+      return false;
+  }
+
   if (_doc == nullptr)
     _doc = Parser::parseFile (file, w, h, errmsg);
   if (unlikely (_doc == nullptr))
@@ -151,6 +182,7 @@ Formatter::start (const string &file, string *errmsg)
 
   g_assert_nonnull (_doc);
   _doc->setData ("formatter", (void *) this);
+  
 
   Context *root = _doc->getRoot ();
   g_assert_nonnull (root);
@@ -457,6 +489,7 @@ Formatter::Formatter (const GingaOptions *opts) : Ginga (opts)
   setOptionDebug (this, "debug", _opts.debug);
   setOptionExperimental (this, "experimental", _opts.experimental);
   setOptionOpenGL (this, "opengl", _opts.opengl);
+  setOptionTemplate (this, "template", _opts.templates);
 }
 
 /**
@@ -574,6 +607,24 @@ Formatter::setOptionOpenGL (unused (Formatter *self), const string &name,
   TRACE ("%s:=%s", name.c_str (), strbool (value));
 }
 
+/**
+ * @brief Sets Formatter to handle template documents.
+ * @param self Formatter.
+ * @param name Must be the string "template".
+ * @param value OpenGL flag value.
+ */
+void
+Formatter::setOptionTemplate (unused (Formatter *self), const string &name,
+                              string value)
+{
+  g_assert (name == "template");
+  bool suffix = xstrhassuffix(value, ".j2");
+  if (value != "" && !suffix)
+  {
+     ERROR ("Template format not allowed");
+  }
+  TRACE ("%s:=%s", name.c_str (), value.c_str ());
+}
 /**
  * @brief Sets the width or height options of the given Formatter.
  * @param self Formatter.

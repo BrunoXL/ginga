@@ -25,8 +25,8 @@ DISTCLEANFILES+= ginga.pc
 pkgconfigdir= $(libdir)/pkgconfig
 pkgconfig_DATA= ginga.pc
 
-AM_CXXFLAGS= $(GINGA_ALL_CXXFLAGS)
-AM_LDFLAGS= $(GINGA_ALL_LDFLAGS)
+AM_CXXFLAGS= $(GINGA_ALL_CXXFLAGS) -I/usr/include/python3.7
+AM_LDFLAGS= $(GINGA_ALL_LDFLAGS) -lpython3.7 -L/usr/lib/python3.7/config-3.7m-x86_64-linux-gnu
 
 include_HEADERS= ginga.h
 lib_LTLIBRARIES= libginga.la

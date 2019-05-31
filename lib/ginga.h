@@ -61,6 +61,9 @@ struct GingaOptions
 
   /// @brief Background color.
   std::string background;
+
+  /// @brief Template name.
+  std::string templates;
 };
 
 /**

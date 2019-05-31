@@ -1,7 +1,10 @@
+#!/usr/bin/env python3.7
+
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from pathlib import Path
 import json
 import re
+import sys
 
 def deserialize_json(name):
     """ Deserealize a json file given as padding document 
@@ -15,12 +18,16 @@ def deserialize_json(name):
     with open(name, "r") as file:    
         des_json = json.load(file)
     return des_json
-      
+    
 
 if __name__ == "__main__":
     abs_path = Path.cwd()
-    #TODO: get name from value passed on command line
-    padding_doc = "padding.json"
+    print(abs_path)
+    padding_doc = sys.argv[1]
+    template_doc = sys.argv[2]
+
+    print(f"Padding:{padding_doc}")
+    print(f"Template:{template_doc}")
 
     env = Environment(
         loader=FileSystemLoader(str(abs_path.joinpath('templates'))),
@@ -30,11 +37,10 @@ if __name__ == "__main__":
     )
 
     #TODO:find a way to pass the 'younger' child template
-    template = env.get_template('__slide_show.ncl.j2')
+    template = env.get_template(template_doc)
 
     try:
         context = {'files_list': deserialize_json(padding_doc)}
-        print (context)
     except Exception as e:
         msg  = "Error: Padding document '{e}' in wrong format".format(e=e.args[0])
         print (msg)
@@ -43,3 +49,4 @@ if __name__ == "__main__":
         path = abs_path.joinpath('slideShow.ncl')   
         with open(path , "w") as file:
             file.write(content)
+        print("Ended")
