@@ -1,4 +1,4 @@
-{% extends "slide_show_base.ncl.j2"%}
+{% extends "slideShow_base.ncl.j2"%}
 {% block medias %}
     {% for i in files_list[0].contents %}
         <media id="{{'image' ~ loop.index}}" src="{{ 'media/' ~ i.name}}" descriptor="ImageDes"/>

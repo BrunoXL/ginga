@@ -2,9 +2,7 @@
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from pathlib import Path
-import json
-import re
-import sys
+import json, sys, logging
 
 def deserialize_json(name):
     """ Deserealize a json file given as padding document 
@@ -20,14 +18,33 @@ def deserialize_json(name):
     return des_json
     
 
+def handle_name (name, max_split):
+    name_list = name.split('.', max_split)
+    if name_list[0].find('child'):
+        name_list = name_list[0].split('_')
+    elif  name_list[0].find('base'):
+        name_list = name_list[0].split ('_')
+    return name_list[0] 
+
 if __name__ == "__main__":
-    abs_path = Path.cwd()
-    print(abs_path)
     padding_doc = sys.argv[1]
     template_doc = sys.argv[2]
+    if len(sys.argv) == 4 and sys.argv[3] == '-d': 
+        DEBUG = True
+    else:
+        DEBUG = False
 
-    print(f"Padding:{padding_doc}")
-    print(f"Template:{template_doc}")
+    max_split = 1
+    
+    abs_path = Path.cwd()
+    if DEBUG:
+        print(abs_path)
+        log_initial = "Starting generating ncl document from {template_doc} with {padding_doc}..."\
+                  .format(template_doc=template_doc,padding_doc=padding_doc)
+        print (log_initial)
+
+    # print(f"Padding:{padding_doc}")
+    # print(f"Template:{template_doc}")
 
     env = Environment(
         loader=FileSystemLoader(str(abs_path.joinpath('templates'))),
@@ -46,7 +63,9 @@ if __name__ == "__main__":
         print (msg)
     else:
         content = template.render(context)
-        path = abs_path.joinpath('slideShow.ncl')   
+        template_name = handle_name(template_doc, max_split)
+        path = abs_path.joinpath(template_name + '.ncl')   
         with open(path , "w") as file:
             file.write(content)
-        print("Ended")
+        if DEBUG:
+            print("Finished generating ncl document...")
