@@ -175,6 +175,7 @@ bool xstrispercent (const string &);
 double xstrtodorpercent (const string &, bool *);
 int xstrcasecmp (const string &, const string &);
 #define xstrcaseeq(s1, s2) (xstrcasecmp ((s1), (s2)) == 0)
+int xstrmatchcmp (const string &, const string &);
 bool xstrhasprefix (const string &, const string &);
 bool xstrhassuffix (const string &, const string &);
 int G_GNUC_PRINTF (2,3) xstrassign (string &, const char *, ...);

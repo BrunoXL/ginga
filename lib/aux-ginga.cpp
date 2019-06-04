@@ -457,6 +457,32 @@ xstrcasecmp (const string &s1, const string &s2)
 }
 
 /**
+ * @brief Compares two strings adding one whether character 
+ * in s1 matches character in s2.
+ * @param s1 First string.
+ * @param s2 Second string.
+ * @return similarity between the two strings;
+ */
+int 
+xstrmatchcmp(const string &s1, const string &s2){
+  int range = 0;
+  int _size_s1 = strlen(s1.c_str ());
+  int _size_s2 = strlen(s2.c_str ());
+
+  (_size_s1 > _size_s2) ? range =  _size_s1: range = _size_s2;
+
+  int similarity = 0;
+  for (int i=0; i<range; i++){
+      if (s1[i] == s2[i])
+          similarity++;
+      else 
+          break;
+  }
+
+  return similarity;
+}
+
+/**
  * @brief Tests string prefix.
  * @param s String.
  * @param prefix Prefix.
