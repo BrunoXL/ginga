@@ -61,7 +61,7 @@ local function handle_name(template_doc)
     return name_table[1]
 end
 
---- main handles templating processing usin Lupa pure Lua Jinja implementation.
+--- main handles templating processing using Lupa pure Lua Jinja implementation.
 -- Enable debud mode whether "-d" is passed as arguments.
 -- @param 
 -- @return 
