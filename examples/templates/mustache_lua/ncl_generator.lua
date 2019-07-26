@@ -97,8 +97,6 @@ local function main ()
         pprint(param)
     end
 
-    -- local mediasTemplateDoc = "medias.mustache"
-    -- local linksTemplateDoc = "links.mustache"
     
     -- Grab content from templates
     local baseTemplateData = handle_template(baseTemplateDoc)
@@ -139,7 +137,7 @@ local function main ()
     local partials = {}
     --name of the files must be same as the partials in the main template document,
     --otherwise logic will fail!!!!!!!!!!!!!
-    for i = 1 , #templatesData do
+    for i = 1, #templatesData do
         local name = mysplit(param[i], param[i]:match(".mustache"))
         partials[name[1]] = templatesData[i]
     end
