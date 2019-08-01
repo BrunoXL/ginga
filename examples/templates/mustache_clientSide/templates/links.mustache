@@ -1,0 +1,8 @@
+{{#contents}}
+    {{#next}}
+        <link id='lMoveForward{{index}}' xconnector='conBase#onEndStart'>
+            <bind role='onEnd' component='image{{index}}'/>
+            <bind role='start' component='image{{next}}'/>
+        </link>
+    {{/next}}
+{{/contents}}
