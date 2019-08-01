@@ -144,7 +144,7 @@ local function main ()
 
     if DEBUG then
         pprint("Partials table:")
-        pprint (partials)
+        pprint(partials)
     end
 
     output = lustache:render(baseTemplateData, context,partials)
@@ -156,6 +156,7 @@ local function main ()
     ncl_doc = mysplit(baseTemplateDoc, baseTemplateDoc:match(".mustache"))
     fh = io.open(ncl_doc[1], "w")
     fh.write(fh, output)
+    fh.close()
 end
 
 main()
