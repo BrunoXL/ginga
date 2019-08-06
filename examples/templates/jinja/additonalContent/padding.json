@@ -1,0 +1,48 @@
+{
+    "video" : "video.mp4",
+    "begin" : "info.png",
+    "close"   : "salir.png",
+    "reg"   : "reg.png",
+    "buttons" : [
+        {   
+            "name"  : "Red",
+            "image" : "rojo.png",
+            "title" : "tituloRojo.txt",
+            "info"  : "infoRojo1.txt",
+            "infoPlus" : "infoRojo2.txt",
+            "background" : "fondo.png",
+            "left"  : "izq.png",
+            "right" : "dere.png"
+        }, 
+        { 
+            "name"  : "Green",
+            "image" : "verde.png",
+            "title" : "tituloVerde.txt",
+            "info"  : "infoVerde1.txt",
+            "infoPlus" : "infoVerde2.txt",
+            "background" : "fondo.png",
+            "left"  : "izq.png",
+            "right" : "dere.png"
+        }, 
+        {
+            "name"  : "Yellow",
+            "image" : "amarillo.png",
+            "title" : "tituloAmar.txt",
+            "info"  : "infoAma1.txt",
+            "infoPlus" : "infoAma2.txt",
+            "background" : "fondo.png",
+            "left"  : "izq.png",
+            "right" : "dere.png"
+        },
+        {
+            "name"  : "Blue",
+            "image" : "azul.png",
+            "title" : "tituloAzul.txt",
+            "info"  : "foto1.png",
+            "infoPlus" : "foto2.png",
+            "background" : "fondo.png",
+            "left"  : "izq.png",
+            "right" : "dere.png"
+        }
+    ]  
+}

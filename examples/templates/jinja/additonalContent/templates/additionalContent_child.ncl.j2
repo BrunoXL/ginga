@@ -1,0 +1,96 @@
+{%extends "additionalContent_base.ncl.j2" %}
+{% block mainVideo %}       
+    	<media id="mVideo" src="{{'media/' .. files_list.video}}" descriptor="desVideo">
+			<property name="bounds"/>
+    	</media>
+
+{% endblock %}
+{#endblock mainVideo #}
+{% block interactiveButtons %}
+		<media id="mBegin" descriptor="desBegin" src="{{'media/' .. files_list.begin}}"/>
+		<media id="mExit" descriptor="desExit" src="{{'media/' .. files_list.close}}"/>
+		
+		<media id="mReg" descriptor="desReg" src="{{'media/' .. files_list.reg}}"/>
+
+	{% for i in files_list.buttons %}
+		<media id="{{'m' .. i.name}}" src ="{{'media/' .. i.image}}" descriptor="{{'desButton' .. loop.index}}"/>
+    	<media id="{{'m' .. i.name .. '_1'}}" src ="{{'media/' .. i.image}}" descriptor="{{'desButton' .. loop.index .. '_1'}}"/>
+		<media id="{{'m' .. i.name .. 'Right'}}" src="{{'media/' .. i.right}}" descriptor="{{'desButton' .. loop.index ..'Right'}}"/> 
+		<media id="{{'m' .. i.name .. 'Left'}}" src="{{'media/' .. i.left}}" descriptor="{{'desButton' .. loop.index ..'Right'}}"/> 
+		<media id="{{'m' .. i.name .. 'Bg'}}" src ="{{'media/' .. i.background}}" descriptor="{{'desButton' .. loop.index .. 'Bg'}}"/>
+		<media id="{{'m' .. i.name .. 'Title'}}" src="{{'media/' .. i.title}}" descriptor="{{'desButton' .. loop.index .. 'Title'}}">
+			<property name="width" value="20%"/>
+			<property name="height" value="5%"/>
+			<property name="left" value="74%"/>
+			<property name="top" value="{{73.8 + 5.0*loop.index0}}%"/>
+			<property name="fontColor" value="white"/>
+			<property name="fontSize" value="17"/>
+			<property name="zIndex" value="3"/>
+			<property name="fontFamily" value="Tiresias"/>
+		</media>
+		<media id="{{'m' .. i.name .. 'Title1'}}" src="{{'media/' .. i.title}}" descriptor="{{'desButton' .. loop.index .. 'Title1'}}">
+			<property name="width" value="20%"/>
+			<property name="height" value="5%"/>
+			<property name="left" value="74%"/>
+			<property name="top" value="{{13.8 + 5.0*loop.index0}}%"/>
+			<property name="fontColor" value="white"/>
+			<property name="fontSize" value="17"/>
+			<property name="zIndex" value="3"/> 
+			<property name="fontFamily" value="Tiresias"/>
+		</media>
+		<media id="{{'m' .. i.name .. 'Info'}}" src="{{'media/'.. i.info}}" descriptor="{{'desButton'.. loop.index .. 'Info'}}">
+			<property name="width" value="25%"/>
+			<property name="height" value="60%"/>
+			<property name="left" value="70%"/>
+			<property name="top" value="{{19 + 5.0*loop.index0}}%"/>
+			<property name="fontColor" value="black"/>
+			<property name="fontSize" value="17"/>
+			<property name="zIndex" value="3"/> 
+			<property name="fontFamily" value="Tiresias"/>
+		</media>
+		<media id="{{'m' .. i.name .. 'Info1'}}" src="{{'media/'.. i.infoPlus}}" descriptor="{{'desButton'.. loop.index .. 'Info1'}}">
+			<property name="width" value="25%"/>
+			<property name="height" value="60%"/>
+			<property name="left" value="70%"/>
+			<property name="top" value="{{13.8 + 5.0*loop.index0}}%"/>
+			<property name="fontColor" value="black"/>
+			<property name="fontSize" value="17"/>
+			<property name="zIndex" value="3"/> 
+			<property name="fontFamily" value="Tiresias"/>
+		</media> 
+	{% endfor %} 
+{% endblock %}     
+{# endblock interactiveButtons #}
+{% block startApp %}
+		<link xconnector="conBase#onKeySelectionStartNStopN">
+			<bind role="onSelection" component="mBegin"/>
+			<linkParam name="keyCode" value="INFO"/>
+		{% for i in files_list.buttons %}
+			<bind role="start" component="{{'m' .. i.name}}"/>
+			<bind role="start" component="{{'m' .. i.name .. 'Title'}}"/>
+		{% endfor %}
+			<bind role="start" component="mExit"/>
+			<bind role="stop" component="mBegin"/>
+		</link>   
+
+{% endblock %}
+{# endblock startApp #}
+{% block endApp %}
+		<link xconnector="conBase#onKeySelectionStartNStopN">
+			<bind role="onSelection" component="mExit"/>
+			<linkParam name="keyCode" value="INFO"/>
+			<bind role="start" component="mBegin"/>
+			<bind role="stop" component="mExit"/>
+			<bind role="stop" component="mReg"/>
+		{% for i in files_list.buttons %}
+			<bind role="stop" component="{{'m' .. i.name}}"/>
+			<bind role="stop" component="{{'m' .. i.name .. '_1'}}"/>
+			<bind role="stop" component="{{'m' .. i.name .. 'Title'}}"/>
+			<bind role="stop" component="{{'m' .. i.name .. 'Title1'}}"/>
+			<bind role="stop" component="{{'m' .. i.name .. 'Bg'}}"/>
+			<bind role="stop" component="{{'m' .. i.name .. 'Info'}}"/>
+		{% endfor %}
+		</link>	
+
+{% endblock %}}
+{# endblock endApp #}
