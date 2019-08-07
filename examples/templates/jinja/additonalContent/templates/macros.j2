@@ -1,0 +1,18 @@
+{% macro nutshell(component, value) %}
+		<link xconnector="conBase#onKeySelectionStartNStopN">
+			<bind role="onSelection" component="{{component}}"/>
+			<linkParam name="keyCode" value="{{value}}"/>
+			{{ caller () }}	
+{% endmacro %}
+{# endmacro nutshell #}
+{% macro setRole(start='', stop='') -%}
+{%+ if stop -%}
+	{%+ for i in start %}
+			<bind role="start" component="{{i}}"/>
+	{% endfor %}
+{% endif %}
+{% if start %}
+
+{% endif %}
+{%- endmacro -%}
+{# endmacro setRole #}

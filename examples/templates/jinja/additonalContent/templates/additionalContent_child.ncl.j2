@@ -58,39 +58,35 @@
 			<property name="zIndex" value="3"/> 
 			<property name="fontFamily" value="Tiresias"/>
 		</media> 
+
 	{% endfor %} 
 {% endblock %}     
 {# endblock interactiveButtons #}
+{% include "macros.j2" %}
 {% block startApp %}
-		<link xconnector="conBase#onKeySelectionStartNStopN">
-			<bind role="onSelection" component="mBegin"/>
-			<linkParam name="keyCode" value="INFO"/>
-		{% for i in files_list.buttons %}
-			<bind role="start" component="{{'m' .. i.name}}"/>
-			<bind role="start" component="{{'m' .. i.name .. 'Title'}}"/>
-		{% endfor %}
-			<bind role="start" component="mExit"/>
+{%+ call nutshell("mBegin", "INFO") -%}
+	{% for i in files_list.buttons %}
+			{% set start = {'m' .. i.name , 'm' .. i.name .. 'Title'} %} 
+			{{- setRole(start) }}		
+	{% endfor %}	
+{%+ endcall %}	
+{# endcall nutshell #}
+			<bind role="start" component="mExit"/>	
 			<bind role="stop" component="mBegin"/>
 		</link>   
-
-{% endblock %}
+{%- endblock %}
 {# endblock startApp #}
 {% block endApp %}
-		<link xconnector="conBase#onKeySelectionStartNStopN">
-			<bind role="onSelection" component="mExit"/>
-			<linkParam name="keyCode" value="INFO"/>
+{%+ call nutshell("mExit", "INFO") -%}
 			<bind role="start" component="mBegin"/>
-			<bind role="stop" component="mExit"/>
+	{% for i in files_list.buttons %}
+			{% set stop = {'m' .. i.name, 'm' .. i.name .. '_1', 'm' .. i.name .. 'Title', 'm' .. i.name .. 'Title_1', 'm' .. i.name .. 'Bg', 'm' .. i.name .. 'Info'} %} 
+			{{- setRole(stop) }}		
+	{% endfor %}	
+{%+ endcall %}	
+{# endcall nutshell #}
+			<bind role="stop" component="mExit"/>	
 			<bind role="stop" component="mReg"/>
-		{% for i in files_list.buttons %}
-			<bind role="stop" component="{{'m' .. i.name}}"/>
-			<bind role="stop" component="{{'m' .. i.name .. '_1'}}"/>
-			<bind role="stop" component="{{'m' .. i.name .. 'Title'}}"/>
-			<bind role="stop" component="{{'m' .. i.name .. 'Title1'}}"/>
-			<bind role="stop" component="{{'m' .. i.name .. 'Bg'}}"/>
-			<bind role="stop" component="{{'m' .. i.name .. 'Info'}}"/>
-		{% endfor %}
-		</link>	
-
-{% endblock %}}
+		</link>   
+{%- endblock %}
 {# endblock endApp #}

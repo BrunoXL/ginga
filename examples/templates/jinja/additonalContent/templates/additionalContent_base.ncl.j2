@@ -131,17 +131,14 @@
     <body>
 		<port id="Inicio" component="mVideo"/>
 		{% block mainVideo %}{% endblock %}
-
-		{% block interactiveButtons %}{% endblock %}
-
+		{% block interactiveButtons %}{% endblock %}	
 		<link xconnector="conBase#onBeginStartN">
 			<bind role="onBegin" component="mVideo"/>
 			<bind role="start" component="mBegin"/>
 		</link>
-		
+
 		{% block startApp %} {% endblock %}
-
 		{% block endApp %} {% endblock %}
-
+		{% block button1Start %} {% endblock %}
     </body>
 </ncl>
