@@ -14,7 +14,7 @@
 
 	{% for i in files_list.buttons %}
 		<media id="{{'m' .. i.name}}" src ="{{'media/' .. i.image}}" descriptor="{{'desButton' .. loop.index}}"/>
-    	<media id="{{'m' .. i.name .. '_1'}}" src ="{{'media/' .. i.image}}" descriptor="{{'desButton' .. loop.index .. '_1'}}"/>
+    	<media id="{{'m' .. i.name .. '1'}}" src ="{{'media/' .. i.image}}" descriptor="{{'desButton' .. loop.index .. '_1'}}"/>
 		<media id="{{'m' .. i.name .. 'Right'}}" src="{{'media/' .. i.right}}" descriptor="{{'desButton' .. loop.index ..'Right'}}"/> 
 		<media id="{{'m' .. i.name .. 'Left'}}" src="{{'media/' .. i.left}}" descriptor="{{'desButton' .. loop.index ..'Right'}}"/> 
 		<media id="{{'m' .. i.name .. 'Bg'}}" src ="{{'media/' .. i.background}}" descriptor="{{'desButton' .. loop.index .. 'Bg'}}"/>
@@ -39,8 +39,10 @@
 			<property name="fontFamily" value="Tiresias"/>
 		</media>
 		<media id="{{'m' .. i.name .. 'Info'}}" src="{{'media/'.. i.info}}" descriptor="{{'desButton'.. loop.index .. 'Info'}}">
-			<property name="width" value="25%"/>
-			<property name="height" value="60%"/>
+		{% if loop.index == 4 %}
+			<property name="width" value="23%"/>
+			<property name="height" value="53%"/>
+		{% endif%}
 			<property name="left" value="70%"/>
 			<property name="top" value="{{19 + 5.0*loop.index0}}%"/>
 			<property name="fontColor" value="black"/>
@@ -49,8 +51,10 @@
 			<property name="fontFamily" value="Tiresias"/>
 		</media>
 		<media id="{{'m' .. i.name .. 'Info1'}}" src="{{'media/'.. i.infoPlus}}" descriptor="{{'desButton'.. loop.index .. 'Info1'}}">
-			<property name="width" value="25%"/>
-			<property name="height" value="60%"/>
+		{% if loop.index == 4 %}
+			<property name="width" value="23%"/>
+			<property name="height" value="53%"/>
+		{% endif%}
 			<property name="left" value="70%"/>
 			<property name="top" value="{{13.8 + 5.0*loop.index0}}%"/>
 			<property name="fontColor" value="black"/>
@@ -64,29 +68,122 @@
 {# endblock interactiveButtons #}
 {% include "macros.j2" %}
 {% block startApp %}
-{%+ call nutshell("mBegin", "INFO") -%}
+{%+ call nutshell("mBegin", "INFO", "onKeySelectionStartNStopN") -%}
 	{% for i in files_list.buttons %}
-			{% set start = {'m' .. i.name , 'm' .. i.name .. 'Title'} %} 
-			{{- setRole(start) }}		
+			{% set values = {'m' .. i.name , 'm' .. i.name .. 'Title'} %} 
+			{{- setAction('start', values) }}		
 	{% endfor %}	
-{%+ endcall %}	
-{# endcall nutshell #}
 			<bind role="start" component="mExit"/>	
 			<bind role="stop" component="mBegin"/>
-		</link>   
+{%+ endcall %}	
+{# endcall nutshell #}
 {%- endblock %}
 {# endblock startApp #}
 {% block endApp %}
-{%+ call nutshell("mExit", "INFO") -%}
+{%+ call nutshell("mExit", "INFO", "onKeySelectionStartNStopN") -%}
 			<bind role="start" component="mBegin"/>
 	{% for i in files_list.buttons %}
-			{% set stop = {'m' .. i.name, 'm' .. i.name .. '_1', 'm' .. i.name .. 'Title', 'm' .. i.name .. 'Title_1', 'm' .. i.name .. 'Bg', 'm' .. i.name .. 'Info'} %} 
-			{{- setRole(stop) }}		
+			{% set values = {'m' .. i.name, 'm' .. i.name .. '1', 
+			'm' .. i.name .. 'Title', 'm' .. i.name .. 'Title1', 'm' .. i.name .. 'Bg',
+			'm' .. i.name .. 'Info'} %} 
+			{{- setAction('stop', values) }}		
 	{% endfor %}	
-{%+ endcall %}	
-{# endcall nutshell #}
 			<bind role="stop" component="mExit"/>	
 			<bind role="stop" component="mReg"/>
-		</link>   
+{%+ endcall %}	
+{# endcall nutshell #}  
 {%- endblock %}
 {# endblock endApp #}
+
+{% block cursorDown %}
+{%+ call nutshell("mReg", "CURSOR_DOWN", "onKeySelectionStartNStopN") -%}
+			<bind role="stop" component="mReg"/>
+	{% for i in files_list.buttons %}
+			{% set values = {'m' .. i.name .. '1', 'm' .. i.name .. 'Title1', 
+			'm' .. i.name .. 'Bg', 'm' .. i.name .. 'Info'} %} 
+			{{- setAction('stop', values) }}					
+	{% endfor %}	
+	{% for i in files_list.buttons %}
+			{% set values = {'m' .. i.name .. '1', 'm' .. i.name .. 'Title'} %} 
+			{{- setAction('start', values) }}					
+	{% endfor %}
+{%+ endcall %}	
+{# endcall nutshell #}
+{%- endblock %}
+{# endblock cursorDown #}
+
+{% block startButtons %}
+	{% set key = {'RED', 'GREEN', 'YELLOW', 'BLUE'} %}
+	{% set button = {} %}
+	{% for i in files_list.buttons %}
+		{% set button = table.insert(button, i.name) %}
+	{% endfor %}
+	{% for i in files_list.buttons %}
+		{%+ call nutshell("m".. i.name, key[loop.index], "onKeySelectionStartNStopN") %}
+			{% if loop.index == 1 %}
+			{% set values = {'m' .. button[1], 'm' .. button[1] .. 'Title'} %} 
+			{{- setAction('stop', values) -}}					
+			{% set values = {'m' .. button[1] .. '1', 'm' .. button[1] .. 'Title1', 
+			'm' .. button[1] .. 'Bg', 'm' .. button[1] .. 'Info'} %} 
+			{{- setAction('start', values) }}			
+			<bind role="start" component="mReg"/>	
+		{% elseif loop.index == 2 %}
+			{% set values = {'m' .. button[1], 'm' .. button[1] .. 'Title', 'm' .. button[2], 
+			'm' .. button[2] .. 'Title', 'm' .. button[2] .. 'Bg', 'm' .. button[2] .. 'Info'} %} 
+			{{- setAction('stop', values) -}}					
+			{% set values = {'m' .. button[1] .. '1', 'm' .. button[1] .. 'Title1', 
+			'm' .. button[2] .. '1', 'm' .. button[2] .. 'Title1',
+			'm' .. button[2] .. 'Bg', 'm' .. button[2] .. 'Info'} %} 
+			{{- setAction('start', values) }}			
+			<bind role="start" component="mReg"/>		
+		{% elseif loop.index == 3 %}
+			{% set values = {'m' .. button[1], 'm' .. button[1] .. 'Title',
+			'm' .. button[2], 'm' .. button[2] .. 'Title', 'm' .. button[3], 
+			'm' .. button[3] .. 'Title', 'm' .. button[1] .. 'Bg', 
+			'm' .. button[1] .. 'Info', 'm' .. button[2] .. 'Bg', 
+			'm' .. button[2] .. 'Info' } %} 
+			{{- setAction('stop', values) -}}					
+			{% set values = {'m' .. button[1] .. '1', 'm' .. button[1] .. 'Title1', 
+			'm' .. button[2] .. '1', 'm' .. button[2] .. 'Title1',
+			'm' .. button[3] .. '1', 'm' .. button[3] .. 'Title1',
+			'm' .. button[3] .. 'Bg', 'm' .. button[3] .. 'Info'} %}	
+			{{- setAction('start', values) }}				
+			<bind role="start" component="mReg"/>
+		{% elseif loop.index == 4 %}
+			{% set values = {'m' .. button[1], 'm' .. button[1] .. 'Title',
+			'm' .. button[2], 'm' .. button[2] .. 'Title', 'm' .. button[3], 
+			'm' .. button[3] .. 'Title', 'm' .. button[4], 
+			'm' .. button[4] .. 'Title', 'm' .. button[1] .. 'Bg', 
+			'm' .. button[1] .. 'Info', 'm' .. button[2] .. 'Bg', 
+			'm' .. button[2] .. 'Info', 'm' .. button[3] .. 'Bg', 
+			'm' .. button[3] .. 'Info' } %} 
+			{{- setAction('stop', values) -}}					
+			{% set values = {'m' .. button[1] .. '1', 'm' .. button[1] .. 'Title1', 
+			'm' .. button[2] .. '1', 'm' .. button[2] .. 'Title1',
+			'm' .. button[3] .. '1', 'm' .. button[3] .. 'Title1',
+			'm' .. button[4] .. '1', 'm' .. button[4] .. 'Title1',
+			'm' .. button[4] .. 'Bg', 'm' .. button[4] .. 'Info'} %}	
+			{{- setAction('start', values) }}				
+			<bind role="start" component="mReg"/>
+		{% endif %}
+		{%+ endcall %}			
+		{# endcall nutshell #}
+	{% endfor %}
+{%- endblock %}
+{# endblock startButtons #}
+
+
+{% block buttons %}
+	{% set key = {'RED', 'GREEN', 'YELLOW', 'BLUE'} %}
+	{% for i in	 files_list.buttons %}
+	{% call nutshell("m".. i.name, colors[loop.index], "onKeySelectionStartNStopN") %}
+			{%- set values = {'m' .. i.name, 'm' .. i.name .. 'Title'} %} 
+			{{- setAction('stop', values) }}
+			<bind role="start" component="mReg"/>
+			{% set values = {'m' .. i.name .. '1', 'm' .. i.name .. 'Title1', 'm' .. i.name .. 'Bg', 'm' .. i.name .. 'Info'} %} 
+			{{- setAction('start', values) }}				
+	{% endcall %}
+	{% endfor %} 
+{%- endblock %}
+{# endblock buttons #} 
+

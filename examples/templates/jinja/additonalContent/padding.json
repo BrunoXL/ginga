@@ -38,8 +38,8 @@
             "name"  : "Blue",
             "image" : "azul.png",
             "title" : "tituloAzul.txt",
-            "info"  : "foto1.png",
-            "infoPlus" : "foto2.png",
+            "info"  : "foto1.jpg",
+            "infoPlus" : "foto2.jpg",
             "background" : "fondo.png",
             "left"  : "izq.png",
             "right" : "dere.png"
