@@ -173,8 +173,6 @@
 			<property name="fontFamily" value="Tiresias"/>
 		</media>
 		<media id="mRedInfo1" src="media/infoRojo2.txt" descriptor="desButton1Info1">
-			<property name="width" value="25%"/>
-			<property name="height" value="60%"/>
 			<property name="left" value="70%"/>
 			<property name="top" value="13.8%"/>
 			<property name="fontColor" value="black"/>
@@ -217,8 +215,6 @@
 			<property name="fontFamily" value="Tiresias"/>
 		</media>
 		<media id="mGreenInfo1" src="media/infoVerde2.txt" descriptor="desButton2Info1">
-			<property name="width" value="25%"/>
-			<property name="height" value="60%"/>
 			<property name="left" value="70%"/>
 			<property name="top" value="18.8%"/>
 			<property name="fontColor" value="black"/>
@@ -261,8 +257,6 @@
 			<property name="fontFamily" value="Tiresias"/>
 		</media>
 		<media id="mYellowInfo1" src="media/infoAma2.txt" descriptor="desButton3Info1">
-			<property name="width" value="25%"/>
-			<property name="height" value="60%"/>
 			<property name="left" value="70%"/>
 			<property name="top" value="23.8%"/>
 			<property name="fontColor" value="black"/>
@@ -307,8 +301,8 @@
 			<property name="fontFamily" value="Tiresias"/>
 		</media>
 		<media id="mBlueInfo1" src="media/foto2.jpg" descriptor="desButton4Info1">
-			<property name="width" value="25%"/>
-			<property name="height" value="60%"/>
+			<property name="width" value="23%"/>
+			<property name="height" value="53%"/>
 			<property name="left" value="70%"/>
 			<property name="top" value="28.8%"/>
 			<property name="fontColor" value="black"/>
@@ -420,12 +414,12 @@
 			<linkParam name="keyCode" value="RED"/>
 						<bind role="stop" component="mRed"/>
 			<bind role="stop" component="mRedTitle"/>
+			<bind role="start" component="mReg"/>
 			<bind role="start" component="mRed1"/>
 			<bind role="start" component="mRedTitle1"/>
+	
 			<bind role="start" component="mRedBg"/>
-			<bind role="start" component="mRedInfo"/>
-			
-			<bind role="start" component="mReg"/>	
+			<bind role="start" component="mRedInfo"/>	
 			
 		</link>
 				<link xconnector="conBase#onKeySelectionStartNStopN">
@@ -437,14 +431,14 @@
 			<bind role="stop" component="mGreenTitle"/>
 			<bind role="stop" component="mGreenBg"/>
 			<bind role="stop" component="mGreenInfo"/>
+			<bind role="start" component="mReg"/>
 			<bind role="start" component="mRed1"/>
 			<bind role="start" component="mRedTitle1"/>
 			<bind role="start" component="mGreen1"/>
 			<bind role="start" component="mGreenTitle1"/>
-			<bind role="start" component="mGreenBg"/>
-			<bind role="start" component="mGreenInfo"/>
 			
-			<bind role="start" component="mReg"/>		
+			<bind role="start" component="mGreenBg"/>
+			<bind role="start" component="mGreenInfo"/>	
 			
 		</link>
 				<link xconnector="conBase#onKeySelectionStartNStopN">
@@ -454,22 +448,22 @@
 			<bind role="stop" component="mRedTitle"/>
 			<bind role="stop" component="mGreen"/>
 			<bind role="stop" component="mGreenTitle"/>
-			<bind role="stop" component="mYellow"/>
-			<bind role="stop" component="mYellowTitle"/>
-			<bind role="stop" component="mRedBg"/>
-			<bind role="stop" component="mRedInfo"/>
 			<bind role="stop" component="mGreenBg"/>
 			<bind role="stop" component="mGreenInfo"/>
+			<bind role="stop" component="mYellow"/>
+			<bind role="stop" component="mYellowTitle"/>
+			<bind role="stop" component="mYellowBg"/>
+			<bind role="stop" component="mYellowInfo"/>
+			<bind role="start" component="mReg"/>
 			<bind role="start" component="mRed1"/>
 			<bind role="start" component="mRedTitle1"/>
 			<bind role="start" component="mGreen1"/>
 			<bind role="start" component="mGreenTitle1"/>
 			<bind role="start" component="mYellow1"/>
 			<bind role="start" component="mYellowTitle1"/>
+			
 			<bind role="start" component="mYellowBg"/>
-			<bind role="start" component="mYellowInfo"/>
-				
-			<bind role="start" component="mReg"/>
+			<bind role="start" component="mYellowInfo"/>	
 			
 		</link>
 				<link xconnector="conBase#onKeySelectionStartNStopN">
@@ -479,16 +473,17 @@
 			<bind role="stop" component="mRedTitle"/>
 			<bind role="stop" component="mGreen"/>
 			<bind role="stop" component="mGreenTitle"/>
-			<bind role="stop" component="mYellow"/>
-			<bind role="stop" component="mYellowTitle"/>
-			<bind role="stop" component="mBlue"/>
-			<bind role="stop" component="mBlueTitle"/>
-			<bind role="stop" component="mRedBg"/>
-			<bind role="stop" component="mRedInfo"/>
 			<bind role="stop" component="mGreenBg"/>
 			<bind role="stop" component="mGreenInfo"/>
+			<bind role="stop" component="mYellow"/>
+			<bind role="stop" component="mYellowTitle"/>
 			<bind role="stop" component="mYellowBg"/>
 			<bind role="stop" component="mYellowInfo"/>
+			<bind role="stop" component="mBlue"/>
+			<bind role="stop" component="mBlueTitle"/>
+			<bind role="stop" component="mBlueBg"/>
+			<bind role="stop" component="mBlueInfo"/>
+			<bind role="start" component="mReg"/>
 			<bind role="start" component="mRed1"/>
 			<bind role="start" component="mRedTitle1"/>
 			<bind role="start" component="mGreen1"/>
@@ -497,10 +492,9 @@
 			<bind role="start" component="mYellowTitle1"/>
 			<bind role="start" component="mBlue1"/>
 			<bind role="start" component="mBlueTitle1"/>
+			
 			<bind role="start" component="mBlueBg"/>
-			<bind role="start" component="mBlueInfo"/>
-				
-			<bind role="start" component="mReg"/>
+			<bind role="start" component="mBlueInfo"/>	
 			
 		</link>
 	</body>

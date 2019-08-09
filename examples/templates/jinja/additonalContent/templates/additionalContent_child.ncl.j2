@@ -115,56 +115,41 @@
 {% block startButtons %}
 	{% set key = {'RED', 'GREEN', 'YELLOW', 'BLUE'} %}
 	{% set button = {} %}
+	{% set stopMem = {} %}
+	{% set startMem = {'mReg'} %}
 	{% for i in files_list.buttons %}
 		{% set button = table.insert(button, i.name) %}
 	{% endfor %}
 	{% for i in files_list.buttons %}
-		{%+ call nutshell("m".. i.name, key[loop.index], "onKeySelectionStartNStopN") %}
-			{% if loop.index == 1 %}
-			{% set values = {'m' .. button[1], 'm' .. button[1] .. 'Title'} %} 
-			{{- setAction('stop', values) -}}					
-			{% set values = {'m' .. button[1] .. '1', 'm' .. button[1] .. 'Title1', 
-			'm' .. button[1] .. 'Bg', 'm' .. button[1] .. 'Info'} %} 
-			{{- setAction('start', values) }}			
-			<bind role="start" component="mReg"/>	
-		{% elseif loop.index == 2 %}
-			{% set values = {'m' .. button[1], 'm' .. button[1] .. 'Title', 'm' .. button[2], 
-			'm' .. button[2] .. 'Title', 'm' .. button[2] .. 'Bg', 'm' .. button[2] .. 'Info'} %} 
-			{{- setAction('stop', values) -}}					
-			{% set values = {'m' .. button[1] .. '1', 'm' .. button[1] .. 'Title1', 
-			'm' .. button[2] .. '1', 'm' .. button[2] .. 'Title1',
-			'm' .. button[2] .. 'Bg', 'm' .. button[2] .. 'Info'} %} 
-			{{- setAction('start', values) }}			
-			<bind role="start" component="mReg"/>		
-		{% elseif loop.index == 3 %}
-			{% set values = {'m' .. button[1], 'm' .. button[1] .. 'Title',
-			'm' .. button[2], 'm' .. button[2] .. 'Title', 'm' .. button[3], 
-			'm' .. button[3] .. 'Title', 'm' .. button[1] .. 'Bg', 
-			'm' .. button[1] .. 'Info', 'm' .. button[2] .. 'Bg', 
-			'm' .. button[2] .. 'Info' } %} 
-			{{- setAction('stop', values) -}}					
-			{% set values = {'m' .. button[1] .. '1', 'm' .. button[1] .. 'Title1', 
-			'm' .. button[2] .. '1', 'm' .. button[2] .. 'Title1',
-			'm' .. button[3] .. '1', 'm' .. button[3] .. 'Title1',
-			'm' .. button[3] .. 'Bg', 'm' .. button[3] .. 'Info'} %}	
-			{{- setAction('start', values) }}				
-			<bind role="start" component="mReg"/>
-		{% elseif loop.index == 4 %}
-			{% set values = {'m' .. button[1], 'm' .. button[1] .. 'Title',
-			'm' .. button[2], 'm' .. button[2] .. 'Title', 'm' .. button[3], 
-			'm' .. button[3] .. 'Title', 'm' .. button[4], 
-			'm' .. button[4] .. 'Title', 'm' .. button[1] .. 'Bg', 
-			'm' .. button[1] .. 'Info', 'm' .. button[2] .. 'Bg', 
-			'm' .. button[2] .. 'Info', 'm' .. button[3] .. 'Bg', 
-			'm' .. button[3] .. 'Info' } %} 
-			{{- setAction('stop', values) -}}					
-			{% set values = {'m' .. button[1] .. '1', 'm' .. button[1] .. 'Title1', 
-			'm' .. button[2] .. '1', 'm' .. button[2] .. 'Title1',
-			'm' .. button[3] .. '1', 'm' .. button[3] .. 'Title1',
-			'm' .. button[4] .. '1', 'm' .. button[4] .. 'Title1',
-			'm' .. button[4] .. 'Bg', 'm' .. button[4] .. 'Info'} %}	
-			{{- setAction('start', values) }}				
-			<bind role="start" component="mReg"/>
+		{%+ call nutshell("m".. i.name, key[loop.index], "onKeySelectionStartNStopN") %}	
+		{% if loop.index == 1 %}
+			{% set stopMedias = {'m' .. button[loop.index], 
+			'm' .. button[loop.index] .. 'Title'} %} 
+			{{- setAction('stop', stopMedias) -}}					
+			{% for i in range(#stopMedias) %} 
+				{% set stopMem = table.insert(stopMem,stopMedias[i]) %} 
+			{%endfor%} 
+			{% set startMedias = {'m' .. button[loop.index] .. '1', 'm' .. button[loop.index] .. 'Title1'} %} 
+			{% for i in range(#startMedias) %} 
+				{% set startMem = table.insert(startMem,startMedias[i]) %} 
+			{%endfor%} 
+			{{- setAction('start', startMem) }}	
+			<bind role="start" component="{{'m' .. button[loop.index] .. 'Bg'}}"/>
+			<bind role="start" component="{{'m' .. button[loop.index] .. 'Info'}}"/>	
+		{% else %}
+		{% set stopMedias = {'m' .. button[loop.index], 'm' .. button[loop.index] .. 'Title', 
+			'm' .. button[loop.index] .. 'Bg', 'm' .. button[loop.index] .. 'Info' } %}
+			{% for i in range(#stopMedias) %} 
+				{% set stopMem = table.insert(stopMem,stopMedias[i]) %} 
+			{%endfor%} 
+				{{- setAction('stop', stopMem) -}} 
+		{% set startMedias = {'m' .. button[loop.index] .. '1', 'm' .. button[loop.index] .. 'Title1'} %} 
+			{% for i in range(#startMedias) %} 
+				{% set startMem = table.insert(startMem,startMedias[i]) %} 
+			{%endfor%} 
+			{{- setAction('start', startMem) }}			
+			<bind role="start" component="{{'m' .. button[loop.index] .. 'Bg'}}"/>
+			<bind role="start" component="{{'m' .. button[loop.index] .. 'Info'}}"/>	
 		{% endif %}
 		{%+ endcall %}			
 		{# endcall nutshell #}
