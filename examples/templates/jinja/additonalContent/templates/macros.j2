@@ -13,3 +13,12 @@
 	{% endfor %}
 {% endmacro %}
 {# endmacro setRole #}
+
+{% macro setEnv() %}
+	{% set key = {'RED', 'GREEN', 'YELLOW', 'BLUE'} %}
+	{% set buttons = {} %} 
+	{% for i in files_list.buttons %}
+		{% set buttons = table.insert(buttons, i.name) %}
+	{% endfor %}  
+	{{ caller (key,buttons) }}
+{% endmacro %}
