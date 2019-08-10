@@ -141,7 +141,7 @@
 			<bind role="start" component="{{'m' .. button[loop.index] .. 'Info'}}"/>	
 		{% else %}
 		{% set stopMedias = {'m' .. button[loop.index], 'm' .. button[loop.index] .. 'Title', 
-				'm' .. button[loop.index] .. 'Bg', 'm' .. button[loop.index] .. 'Info' } %}
+				'm' .. button[loop.index-1] .. 'Bg', 'm' .. button[loop.index-1] .. 'Info' } %}
 			{% for i in range(#stopMedias) %} 
 				{% set stopMem = table.insert(stopMem,stopMedias[i]) %} 
 			{%endfor%} 
@@ -175,7 +175,7 @@
 		{%- endfor %} 	
 		{{- setAction('stop', stopMem) }}
 		{%- if i == 1 %}
-			{% set stopMedias = {'m' .. button[i] .. '1', 'm' .. button[i] .. 'Title1'} %}
+			{% set stopMedias = {'m' .. button[i], 'm' .. button[i] .. 'Title'} %}
 			{{- setAction('stop', stopMedias) -}}
 		{%- endif %}
 		{{- table.insert(startMem, 'm' .. button[i+1]) }}

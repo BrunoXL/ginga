@@ -449,8 +449,8 @@
 			<bind role="stop" component="mRedTitle"/>
 			<bind role="stop" component="mGreen"/>
 			<bind role="stop" component="mGreenTitle"/>
-			<bind role="stop" component="mGreenBg"/>
-			<bind role="stop" component="mGreenInfo"/>
+			<bind role="stop" component="mRedBg"/>
+			<bind role="stop" component="mRedInfo"/>
 			<bind role="start" component="mReg"/>
 			<bind role="start" component="mRed1"/>
 			<bind role="start" component="mRedTitle1"/>
@@ -468,12 +468,12 @@
 			<bind role="stop" component="mRedTitle"/>
 			<bind role="stop" component="mGreen"/>
 			<bind role="stop" component="mGreenTitle"/>
-			<bind role="stop" component="mGreenBg"/>
-			<bind role="stop" component="mGreenInfo"/>
+			<bind role="stop" component="mRedBg"/>
+			<bind role="stop" component="mRedInfo"/>
 			<bind role="stop" component="mYellow"/>
 			<bind role="stop" component="mYellowTitle"/>
-			<bind role="stop" component="mYellowBg"/>
-			<bind role="stop" component="mYellowInfo"/>
+			<bind role="stop" component="mGreenBg"/>
+			<bind role="stop" component="mGreenInfo"/>
 			<bind role="start" component="mReg"/>
 			<bind role="start" component="mRed1"/>
 			<bind role="start" component="mRedTitle1"/>
@@ -493,16 +493,16 @@
 			<bind role="stop" component="mRedTitle"/>
 			<bind role="stop" component="mGreen"/>
 			<bind role="stop" component="mGreenTitle"/>
-			<bind role="stop" component="mGreenBg"/>
-			<bind role="stop" component="mGreenInfo"/>
+			<bind role="stop" component="mRedBg"/>
+			<bind role="stop" component="mRedInfo"/>
 			<bind role="stop" component="mYellow"/>
 			<bind role="stop" component="mYellowTitle"/>
-			<bind role="stop" component="mYellowBg"/>
-			<bind role="stop" component="mYellowInfo"/>
+			<bind role="stop" component="mGreenBg"/>
+			<bind role="stop" component="mGreenInfo"/>
 			<bind role="stop" component="mBlue"/>
 			<bind role="stop" component="mBlueTitle"/>
-			<bind role="stop" component="mBlueBg"/>
-			<bind role="stop" component="mBlueInfo"/>
+			<bind role="stop" component="mYellowBg"/>
+			<bind role="stop" component="mYellowInfo"/>
 			<bind role="start" component="mReg"/>
 			<bind role="start" component="mRed1"/>
 			<bind role="start" component="mRedTitle1"/>
@@ -569,8 +569,8 @@
 			<bind role="stop" component="mGreenTitle1"/>
 			<bind role="stop" component="mGreenBg"/>
 			<bind role="stop" component="mGreenInfo"/>
-			<bind role="stop" component="mRed1"/>
-			<bind role="stop" component="mRedTitle1"/>
+			<bind role="stop" component="mRed"/>
+			<bind role="stop" component="mRedTitle"/>
 			<bind role="start" component="mRedBg"/>
 			<bind role="start" component="mRedInfo"/>
 			<bind role="start" component="mBlue"/>
