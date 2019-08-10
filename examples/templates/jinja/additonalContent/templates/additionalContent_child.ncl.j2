@@ -199,7 +199,7 @@
 		<bind role="start" component="{{"m" .. button[1] .. "Right"}}"/>
 		{% set stopValues = {"m" .. button[2] .. "Right", "m" .. button[3] .. "Right", "m" .. button[4] .. "Right", 
 			"m" .. button[2] .. "Left", "m" .. button[3] .. "Left", "m" .. button[4] .. "Left", 
-			"m" .. button[2] .. "1", "m" .. button[3] .. "1", "m" .. button[4] .. "1"} %}	
+			"m" .. button[2] .. "Info1", "m" .. button[3] .. "Info1", "m" .. button[4] .. "Info1"} %}	
 		{{- setAction('stop', stopValues) }}
 	{% endcall %}
 	{# endcall setEnv #}
@@ -214,7 +214,7 @@
 		<bind role="start" component="{{"m" .. button[2] .. "Right"}}"/>
 		{% set stopValues = {"m" .. button[1] .. "Right", "m" .. button[3] .. "Right", "m" .. button[4] .. "Right", 
 			"m" .. button[1] .. "Left", "m" .. button[3] .. "Left", "m" .. button[4] .. "Left", 
-			"m" .. button[1] .. "1", "m" .. button[3] .. "1", "m" .. button[4] .. "1"} %}	
+			"m" .. button[1] .. "Info1", "m" .. button[3] .. "Info1", "m" .. button[4] .. "Info1"} %}	
 		{{- setAction('stop', stopValues) }}
 	{% endcall %}
 	{# endcall setEnv #}
@@ -229,7 +229,7 @@
 		<bind role="start" component="{{"m" .. button[3] .. "Right"}}"/>
 		{% set stopValues = {"m" .. button[1] .. "Right", "m" .. button[2] .. "Right", "m" .. button[4] .. "Right", 
 			"m" .. button[1] .. "Left", "m" .. button[2] .. "Left", "m" .. button[4] .. "Left", 
-			"m" .. button[1] .. "1", "m" .. button[2] .. "1", "m" .. button[4] .. "1"} %}	
+			"m" .. button[1] .. "Info1", "m" .. button[2] .. "Info1", "m" .. button[4] .. "Info1"} %}	
 		{{- setAction('stop', stopValues) }}
 	{% endcall %}
 	{# endcall setEnv #}
@@ -244,7 +244,7 @@
 		<bind role="start" component="{{"m" .. button[4] .. "Right"}}"/>
 		{% set stopValues = {"m" .. button[1] .. "Right", "m" .. button[2] .. "Right", "m" .. button[3] .. "Right", 
 			"m" .. button[1] .. "Left", "m" .. button[2] .. "Left", "m" .. button[3] .. "Left", 
-			"m" .. button[1] .. "1", "m" .. button[2] .. "1", "m" .. button[3] .. "1"} %}	
+			"m" .. button[1] .. "Info1", "m" .. button[2] .. "Info1", "m" .. button[3] .. "Info1"} %}	
 		{{- setAction('stop', stopValues) }}
 	{% endcall %}
 	{# endcall setEnv #}
@@ -282,7 +282,7 @@
 	{% for i in button %}
 	{%+ call nutshell("m" .. button[loop.index] , key[loop.index], "onBeginStopN", "onBegin") %}
 		{%- set stopMedias = {'m' .. button[loop.index] .. 'Left', 'm' .. button[loop.index] .. 'Right', 
-			'm' .. button[loop.index] .. '1'} %} 
+			'm' .. button[loop.index] .. 'Info1'} %} 
 		{{- setAction('stop', stopMedias) }}				
 	{% endcall %} 
 	{% endfor %}	

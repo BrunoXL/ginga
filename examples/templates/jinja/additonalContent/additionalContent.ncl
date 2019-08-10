@@ -593,9 +593,9 @@
 			<bind role="stop" component="mGreenLeft"/>
 			<bind role="stop" component="mYellowLeft"/>
 			<bind role="stop" component="mBlueLeft"/>
-			<bind role="stop" component="mGreen1"/>
-			<bind role="stop" component="mYellow1"/>
-			<bind role="stop" component="mBlue1"/>
+			<bind role="stop" component="mGreenInfo1"/>
+			<bind role="stop" component="mYellowInfo1"/>
+			<bind role="stop" component="mBlueInfo1"/>
 
 	
 		</link>
@@ -610,9 +610,9 @@
 			<bind role="stop" component="mRedLeft"/>
 			<bind role="stop" component="mYellowLeft"/>
 			<bind role="stop" component="mBlueLeft"/>
-			<bind role="stop" component="mRed1"/>
-			<bind role="stop" component="mYellow1"/>
-			<bind role="stop" component="mBlue1"/>
+			<bind role="stop" component="mRedInfo1"/>
+			<bind role="stop" component="mYellowInfo1"/>
+			<bind role="stop" component="mBlueInfo1"/>
 
 	
 		</link>
@@ -627,9 +627,9 @@
 			<bind role="stop" component="mRedLeft"/>
 			<bind role="stop" component="mGreenLeft"/>
 			<bind role="stop" component="mBlueLeft"/>
-			<bind role="stop" component="mRed1"/>
-			<bind role="stop" component="mGreen1"/>
-			<bind role="stop" component="mBlue1"/>
+			<bind role="stop" component="mRedInfo1"/>
+			<bind role="stop" component="mGreenInfo1"/>
+			<bind role="stop" component="mBlueInfo1"/>
 
 	
 		</link>
@@ -644,9 +644,9 @@
 			<bind role="stop" component="mRedLeft"/>
 			<bind role="stop" component="mGreenLeft"/>
 			<bind role="stop" component="mYellowLeft"/>
-			<bind role="stop" component="mRed1"/>
-			<bind role="stop" component="mGreen1"/>
-			<bind role="stop" component="mYellow1"/>
+			<bind role="stop" component="mRedInfo1"/>
+			<bind role="stop" component="mGreenInfo1"/>
+			<bind role="stop" component="mYellowInfo1"/>
 
 	
 		</link>
@@ -744,7 +744,7 @@
 			<linkParam name="keyCode" value="RED"/>
 						<bind role="stop" component="mRedLeft"/>
 			<bind role="stop" component="mRedRight"/>
-			<bind role="stop" component="mRed1"/>
+			<bind role="stop" component="mRedInfo1"/>
 				
 	
 		</link>
@@ -753,7 +753,7 @@
 			<linkParam name="keyCode" value="GREEN"/>
 						<bind role="stop" component="mGreenLeft"/>
 			<bind role="stop" component="mGreenRight"/>
-			<bind role="stop" component="mGreen1"/>
+			<bind role="stop" component="mGreenInfo1"/>
 				
 	
 		</link>
@@ -762,7 +762,7 @@
 			<linkParam name="keyCode" value="YELLOW"/>
 						<bind role="stop" component="mYellowLeft"/>
 			<bind role="stop" component="mYellowRight"/>
-			<bind role="stop" component="mYellow1"/>
+			<bind role="stop" component="mYellowInfo1"/>
 				
 	
 		</link>
@@ -771,7 +771,7 @@
 			<linkParam name="keyCode" value="BLUE"/>
 						<bind role="stop" component="mBlueLeft"/>
 			<bind role="stop" component="mBlueRight"/>
-			<bind role="stop" component="mBlue1"/>
+			<bind role="stop" component="mBlueInfo1"/>
 				
 	
 		</link>
