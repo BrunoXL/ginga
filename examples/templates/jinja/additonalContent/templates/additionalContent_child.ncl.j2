@@ -42,7 +42,10 @@
 		{% if loop.index == 4 %}
 			<property name="width" value="23%"/>
 			<property name="height" value="53%"/>
-		{% endif%}
+		{% else %}
+			<property name="width" value="25%"/>
+			<property name="height" value="60%"/>
+		{% endif %}
 			<property name="left" value="70%"/>
 			<property name="top" value="{{19 + 5.0*loop.index0}}%"/>
 			<property name="fontColor" value="black"/>
@@ -54,9 +57,12 @@
 		{% if loop.index == 4 %}
 			<property name="width" value="23%"/>
 			<property name="height" value="53%"/>
-		{% endif%}
+		{% else %}
+			<property name="width" value="25%"/>
+			<property name="height" value="60%"/>
+		{% endif %}
 			<property name="left" value="70%"/>
-			<property name="top" value="{{13.8 + 5.0*loop.index0}}%"/>
+			<property name="top" value="{{19 + 5.0*loop.index0}}%"/>
 			<property name="fontColor" value="black"/>
 			<property name="fontSize" value="17"/>
 			<property name="zIndex" value="3"/> 
@@ -85,7 +91,7 @@
 	{% for i in files_list.buttons %}
 			{% set values = {'m' .. i.name, 'm' .. i.name .. '1', 
 				'm' .. i.name .. 'Title', 'm' .. i.name .. 'Title1', 'm' .. i.name .. 'Bg',
-				'm' .. i.name .. 'Info', 'm' .. i.name .. 'Right'} %} 
+				'm' .. i.name .. 'Info', 'm' .. i.name .. 'Right', 'm' .. i.name .. 'Info1' } %} 
 			{{- setAction('stop', values) }}		
 	{% endfor %}	
 			<bind role="stop" component="mExit"/>	
@@ -246,17 +252,26 @@
 {% endblock %}
 {# endblock cursorRightButton4 #}
 
-{% block buttons %}
-	{% set key = {'RED', 'GREEN', 'YELLOW', 'BLUE'} %}
+{% block navigationRight %}
 	{% for i in	 files_list.buttons %}
-	{% call nutshell("m".. i.name, colors[loop.index], "onKeySelectionStartNStopN", "onSelection") %}
-			{%- set values = {'m' .. i.name, 'm' .. i.name .. 'Title'} %} 
-			{{- setAction('stop', values) }}
-			<bind role="start" component="mReg"/>
-			{% set values = {'m' .. i.name .. '1', 'm' .. i.name .. 'Title1', 'm' .. i.name .. 'Bg', 'm' .. i.name .. 'Info'} %} 
-			{{- setAction('start', values) }}				
+	{% call nutshell("m".. i.name .. "Right" , "CURSOR_RIGHT", "onKeySelectionStartNStopN", "onSelection") %}
+			{%- set stopMedias = {'m' .. i.name .. 'Info', 'm' .. i.name .. 'Right'} %} 
+			{{- setAction('stop', stopMedias) }}
+			{% set startMedias = {'m' .. i.name .. 'Info1', 'm' .. i.name .. 'Left'} %} 
+			{{- setAction('start', startMedias) }}				
 	{% endcall %}
 	{% endfor %} 
 {%- endblock %}
-{# endblock buttons #} 
+{# endblock navigationRight #} 
 
+{% block navigationLeft %}
+	{% for i in	 files_list.buttons %}
+	{% call nutshell("m".. i.name .. "Left" , "CURSOR_LEFT", "onKeySelectionStopNStartN", "onSelection") %}
+			{%- set stopMedias = {'m' .. i.name .. 'Info1', 'm' .. i.name .. 'Left'} %} 
+			{{- setAction('stop', stopMedias) }}
+			{% set startMedias = {'m' .. i.name .. 'Info', 'm' .. i.name .. 'Right'} %} 
+			{{- setAction('start', startMedias) }}				
+	{% endcall %}
+	{% endfor %} 
+{%- endblock %}
+{# endblock navigationLeft #} 

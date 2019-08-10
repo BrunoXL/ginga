@@ -165,6 +165,8 @@
 			<property name="fontFamily" value="Tiresias"/>
 		</media>
 		<media id="mRedInfo" src="media/infoRojo1.txt" descriptor="desButton1Info">
+			<property name="width" value="25%"/>
+			<property name="height" value="60%"/>
 			<property name="left" value="70%"/>
 			<property name="top" value="19%"/>
 			<property name="fontColor" value="black"/>
@@ -173,8 +175,10 @@
 			<property name="fontFamily" value="Tiresias"/>
 		</media>
 		<media id="mRedInfo1" src="media/infoRojo2.txt" descriptor="desButton1Info1">
+			<property name="width" value="25%"/>
+			<property name="height" value="60%"/>
 			<property name="left" value="70%"/>
-			<property name="top" value="13.8%"/>
+			<property name="top" value="19%"/>
 			<property name="fontColor" value="black"/>
 			<property name="fontSize" value="17"/>
 			<property name="zIndex" value="3"/> 
@@ -207,6 +211,8 @@
 			<property name="fontFamily" value="Tiresias"/>
 		</media>
 		<media id="mGreenInfo" src="media/infoVerde1.txt" descriptor="desButton2Info">
+			<property name="width" value="25%"/>
+			<property name="height" value="60%"/>
 			<property name="left" value="70%"/>
 			<property name="top" value="24%"/>
 			<property name="fontColor" value="black"/>
@@ -215,8 +221,10 @@
 			<property name="fontFamily" value="Tiresias"/>
 		</media>
 		<media id="mGreenInfo1" src="media/infoVerde2.txt" descriptor="desButton2Info1">
+			<property name="width" value="25%"/>
+			<property name="height" value="60%"/>
 			<property name="left" value="70%"/>
-			<property name="top" value="18.8%"/>
+			<property name="top" value="24%"/>
 			<property name="fontColor" value="black"/>
 			<property name="fontSize" value="17"/>
 			<property name="zIndex" value="3"/> 
@@ -249,6 +257,8 @@
 			<property name="fontFamily" value="Tiresias"/>
 		</media>
 		<media id="mYellowInfo" src="media/infoAma1.txt" descriptor="desButton3Info">
+			<property name="width" value="25%"/>
+			<property name="height" value="60%"/>
 			<property name="left" value="70%"/>
 			<property name="top" value="29%"/>
 			<property name="fontColor" value="black"/>
@@ -257,8 +267,10 @@
 			<property name="fontFamily" value="Tiresias"/>
 		</media>
 		<media id="mYellowInfo1" src="media/infoAma2.txt" descriptor="desButton3Info1">
+			<property name="width" value="25%"/>
+			<property name="height" value="60%"/>
 			<property name="left" value="70%"/>
-			<property name="top" value="23.8%"/>
+			<property name="top" value="29%"/>
 			<property name="fontColor" value="black"/>
 			<property name="fontSize" value="17"/>
 			<property name="zIndex" value="3"/> 
@@ -304,7 +316,7 @@
 			<property name="width" value="23%"/>
 			<property name="height" value="53%"/>
 			<property name="left" value="70%"/>
-			<property name="top" value="28.8%"/>
+			<property name="top" value="34%"/>
 			<property name="fontColor" value="black"/>
 			<property name="fontSize" value="17"/>
 			<property name="zIndex" value="3"/> 
@@ -346,6 +358,7 @@
 			<bind role="stop" component="mRedBg"/>
 			<bind role="stop" component="mRedInfo"/>
 			<bind role="stop" component="mRedRight"/>
+			<bind role="stop" component="mRedInfo1"/>
 		
 			<bind role="stop" component="mGreen"/>
 			<bind role="stop" component="mGreen1"/>
@@ -354,6 +367,7 @@
 			<bind role="stop" component="mGreenBg"/>
 			<bind role="stop" component="mGreenInfo"/>
 			<bind role="stop" component="mGreenRight"/>
+			<bind role="stop" component="mGreenInfo1"/>
 		
 			<bind role="stop" component="mYellow"/>
 			<bind role="stop" component="mYellow1"/>
@@ -362,6 +376,7 @@
 			<bind role="stop" component="mYellowBg"/>
 			<bind role="stop" component="mYellowInfo"/>
 			<bind role="stop" component="mYellowRight"/>
+			<bind role="stop" component="mYellowInfo1"/>
 		
 			<bind role="stop" component="mBlue"/>
 			<bind role="stop" component="mBlue1"/>
@@ -370,6 +385,7 @@
 			<bind role="stop" component="mBlueBg"/>
 			<bind role="stop" component="mBlueInfo"/>
 			<bind role="stop" component="mBlueRight"/>
+			<bind role="stop" component="mBlueInfo1"/>
 		
 			<bind role="stop" component="mExit"/>	
 			<bind role="stop" component="mReg"/>
@@ -635,5 +651,93 @@
 	
 		</link>
 
+		<link xconnector="conBase#onKeySelectionStartNStopN">
+			<bind role="onSelection" component="mRedRight"/>
+			<linkParam name="keyCode" value="CURSOR_RIGHT"/>
+						<bind role="stop" component="mRedInfo"/>
+			<bind role="stop" component="mRedRight"/>
+
+			<bind role="start" component="mRedInfo1"/>
+			<bind role="start" component="mRedLeft"/>
+				
+	
+		</link>
+		<link xconnector="conBase#onKeySelectionStartNStopN">
+			<bind role="onSelection" component="mGreenRight"/>
+			<linkParam name="keyCode" value="CURSOR_RIGHT"/>
+						<bind role="stop" component="mGreenInfo"/>
+			<bind role="stop" component="mGreenRight"/>
+
+			<bind role="start" component="mGreenInfo1"/>
+			<bind role="start" component="mGreenLeft"/>
+				
+	
+		</link>
+		<link xconnector="conBase#onKeySelectionStartNStopN">
+			<bind role="onSelection" component="mYellowRight"/>
+			<linkParam name="keyCode" value="CURSOR_RIGHT"/>
+						<bind role="stop" component="mYellowInfo"/>
+			<bind role="stop" component="mYellowRight"/>
+
+			<bind role="start" component="mYellowInfo1"/>
+			<bind role="start" component="mYellowLeft"/>
+				
+	
+		</link>
+		<link xconnector="conBase#onKeySelectionStartNStopN">
+			<bind role="onSelection" component="mBlueRight"/>
+			<linkParam name="keyCode" value="CURSOR_RIGHT"/>
+						<bind role="stop" component="mBlueInfo"/>
+			<bind role="stop" component="mBlueRight"/>
+
+			<bind role="start" component="mBlueInfo1"/>
+			<bind role="start" component="mBlueLeft"/>
+				
+	
+		</link>
+		<link xconnector="conBase#onKeySelectionStopNStartN">
+			<bind role="onSelection" component="mRedLeft"/>
+			<linkParam name="keyCode" value="CURSOR_LEFT"/>
+						<bind role="stop" component="mRedInfo1"/>
+			<bind role="stop" component="mRedLeft"/>
+
+			<bind role="start" component="mRedInfo"/>
+			<bind role="start" component="mRedRight"/>
+				
+	
+		</link>
+		<link xconnector="conBase#onKeySelectionStopNStartN">
+			<bind role="onSelection" component="mGreenLeft"/>
+			<linkParam name="keyCode" value="CURSOR_LEFT"/>
+						<bind role="stop" component="mGreenInfo1"/>
+			<bind role="stop" component="mGreenLeft"/>
+
+			<bind role="start" component="mGreenInfo"/>
+			<bind role="start" component="mGreenRight"/>
+				
+	
+		</link>
+		<link xconnector="conBase#onKeySelectionStopNStartN">
+			<bind role="onSelection" component="mYellowLeft"/>
+			<linkParam name="keyCode" value="CURSOR_LEFT"/>
+						<bind role="stop" component="mYellowInfo1"/>
+			<bind role="stop" component="mYellowLeft"/>
+
+			<bind role="start" component="mYellowInfo"/>
+			<bind role="start" component="mYellowRight"/>
+				
+	
+		</link>
+		<link xconnector="conBase#onKeySelectionStopNStartN">
+			<bind role="onSelection" component="mBlueLeft"/>
+			<linkParam name="keyCode" value="CURSOR_LEFT"/>
+						<bind role="stop" component="mBlueInfo1"/>
+			<bind role="stop" component="mBlueLeft"/>
+
+			<bind role="start" component="mBlueInfo"/>
+			<bind role="start" component="mBlueRight"/>
+				
+	
+		</link>
 	</body>
 </ncl>
