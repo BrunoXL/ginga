@@ -14,7 +14,7 @@
 			<bind role="{{name}}" component="{{i}}"/>
 	{% endfor %}
 {% endmacro %}
-{# endmacro setRole #}
+{# endmacro setAction #}
 
 {% macro setEnv() %}
 	{% set key = {'RED', 'GREEN', 'YELLOW', 'BLUE'} %}
@@ -24,3 +24,4 @@
 	{% endfor %}  
 	{{ caller (key,buttons) }}
 {% endmacro %}
+{# endmacro setenv #}
