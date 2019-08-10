@@ -157,7 +157,7 @@
 		<media id="Mfam" descriptor="Dfam" src="media/fondo.png"/>
 		<media id="Mfaz" descriptor="Dfaz" src="media/fondo.png"/>
 		
-		<media id="Mrojot" descriptor="Drojot" src="media/TituloRojo.txt">
+		<media id="Mrojot" descriptor="Drojot" src="media/tituloRojo.txt">
 			<property name="width" value="20%"/>
 			<property name="height" value="5%"/>
 			<property name="left" value="74%"/>
@@ -167,7 +167,7 @@
 			<property name="zIndex" value="3"/>
 			<property name="fontFamily" value="Tiresias"/>
 		</media>
-		<media id="Mverdet" descriptor="Dverdet" src="media/TituloVerde.txt">
+		<media id="Mverdet" descriptor="Dverdet" src="media/tituloVerde.txt">
 			<property name="width" value="20%"/>
 			<property name="height" value="5%"/>
 			<property name="left" value="74%"/>
@@ -177,7 +177,7 @@
 			<property name="zIndex" value="3"/> 
 			<property name="fontFamily" value="Tiresias"/>
 		</media>
-		<media id="Mamart" descriptor="Damarillot" src="media/TituloAmar.txt">
+		<media id="Mamart" descriptor="Damarillot" src="media/tituloAmar.txt">
 			<property name="width" value="20%"/>
 			<property name="height" value="5%"/>
 			<property name="left" value="74%"/>
@@ -187,7 +187,7 @@
 			<property name="zIndex" value="3"/> 
 			<property name="fontFamily" value="Tiresias"/>
 		</media>
-		<media id="Mazult" descriptor="Dazult" src="media/TituloAzul.txt">
+		<media id="Mazult" descriptor="Dazult" src="media/tituloAzul.txt">
 			<property name="width" value="20%"/>
 			<property name="height" value="5%"/>
 			<property name="left" value="74%"/>
@@ -198,7 +198,7 @@
 			<property name="fontFamily" value="Tiresias"/>
 		</media>
 		
-		<media id="Mrojot1" descriptor="Drojot1" src="media/TituloRojo.txt">
+		<media id="Mrojot1" descriptor="Drojot1" src="media/tituloRojo.txt">
 			<property name="width" value="20%"/>
 			<property name="height" value="5%"/>
 			<property name="left" value="74%"/>
@@ -208,7 +208,7 @@
 			<property name="zIndex" value="3"/> 
 			<property name="fontFamily" value="Tiresias"/>
 		</media>
-		<media id="Mverdet1" descriptor="Dverdet1" src="media/TituloVerde.txt">
+		<media id="Mverdet1" descriptor="Dverdet1" src="media/tituloVerde.txt">
 			<property name="width" value="20%"/>
 			<property name="height" value="5%"/>
 			<property name="left" value="74%"/>
@@ -218,7 +218,7 @@
 			<property name="zIndex" value="3"/> 
 			<property name="fontFamily" value="Tiresias"/>
 		</media>
-		<media id="Mamart1" descriptor="Damarillot1" src="media/TituloAmar.txt">
+		<media id="Mamart1" descriptor="Damarillot1" src="media/tituloAmar.txt">
 			<property name="width" value="20%"/>
 			<property name="height" value="5%"/>
 			<property name="left" value="74%"/>
@@ -228,7 +228,7 @@
 			<property name="zIndex" value="3"/> 
 			<property name="fontFamily" value="Tiresias"/>
 		</media>
-		<media id="Mazult1" descriptor="Dazult1" src="media/TituloAzul.txt">
+		<media id="Mazult1" descriptor="Dazult1" src="media/tituloAzul.txt">
 			<property name="width" value="20%"/>
 			<property name="height" value="5%"/>
 			<property name="left" value="74%"/>

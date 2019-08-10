@@ -68,7 +68,7 @@
 {# endblock interactiveButtons #}
 {% include "macros.j2" %}
 {% block startApp %}
-{%+ call nutshell("mBegin", "INFO", "onKeySelectionStartNStopN") -%}
+{%+ call nutshell("mBegin", "INFO", "onKeySelectionStartNStopN", "onSelection") -%}
 	{% for i in files_list.buttons %}
 			{% set values = {'m' .. i.name , 'm' .. i.name .. 'Title'} %} 
 			{{- setAction('start', values) }}		
@@ -80,12 +80,12 @@
 {%- endblock %}
 {# endblock startApp #}
 {% block endApp %}
-{%+ call nutshell("mExit", "INFO", "onKeySelectionStartNStopN") -%}
+{%+ call nutshell("mExit", "INFO", "onKeySelectionStartNStopN", "onSelection") -%}
 			<bind role="start" component="mBegin"/>
 	{% for i in files_list.buttons %}
 			{% set values = {'m' .. i.name, 'm' .. i.name .. '1', 
 				'm' .. i.name .. 'Title', 'm' .. i.name .. 'Title1', 'm' .. i.name .. 'Bg',
-				'm' .. i.name .. 'Info'} %} 
+				'm' .. i.name .. 'Info', 'm' .. i.name .. 'Right'} %} 
 			{{- setAction('stop', values) }}		
 	{% endfor %}	
 			<bind role="stop" component="mExit"/>	
@@ -96,7 +96,7 @@
 {# endblock endApp #}
 
 {% block cursorDown %}
-{%+ call nutshell("mReg", "CURSOR_DOWN", "onKeySelectionStartNStopN") -%}
+{%+ call nutshell("mReg", "CURSOR_DOWN", "onKeySelectionStartNStopN", "onSelection") -%}
 			<bind role="stop" component="mReg"/>
 	{% for i in files_list.buttons %}
 			{% set values = {'m' .. i.name .. '1', 'm' .. i.name .. 'Title1', 
@@ -104,7 +104,7 @@
 			{{- setAction('stop', values) }}					
 	{% endfor %}	
 	{% for i in files_list.buttons %}
-			{% set values = {'m' .. i.name .. '1', 'm' .. i.name .. 'Title'} %} 
+			{% set values = {'m' .. i.name, 'm' .. i.name .. 'Title'} %} 
 			{{- setAction('start', values) }}					
 	{% endfor %}
 {%+ endcall %}	
@@ -117,7 +117,7 @@
 	{% set stopMem = {} %}
 	{% set startMem = {'mReg'} %}
 	{% for i in files_list.buttons %}
-		{%+ call nutshell("m".. i.name, key[loop.index], "onKeySelectionStartNStopN") %}	
+		{%+ call nutshell("m".. i.name, key[loop.index], "onKeySelectionStopNStartN", "onSelection") %}	
 		{% if loop.index == 1 %}
 			{% set stopMedias = {'m' .. button[loop.index], 
 				'm' .. button[loop.index] .. 'Title'} %} 
@@ -160,7 +160,7 @@
 	{% set stopMem = {} %}
 	{% set startMem = {} %}
 	{%+ for i in range(#button-1,1,-1) %}
-		{%+ call nutshell("m".. button[i] .. "1", key[i], "onKeySelectionStartNStopN") %}	
+		{%+ call nutshell("m".. button[i] .. "1", key[i], "onKeySelectionStartNStopN", "onSelection") %}	
 		{%- set stopMedias = {'m' .. button[i+1] .. "1", 'm' .. button[i+1] .. 'Title1',
 			'm' .. button[i+1] .. 'Bg', 'm' .. button[i+1] .. 'Info'} %} 
 		{%- for i in range(#stopMedias) %} 
@@ -186,15 +186,70 @@
 {%- endblock %}
 {# endblock closeButtons #}
 
+{% block cursorRightButton1 %}
+	{%- call (key, button) setEnv() %}
+	{%+ call nutshell("m".. button[1] .. "Bg", key[1], "onBeginStartNStopN", "onBegin") %}
+		<bind role="start" component="{{"m" .. button[1] .. "Right"}}"/>
+		{% set stopValues = {"m" .. button[2] .. "Right", "m" .. button[3] .. "Right", "m" .. button[4] .. "Right", 
+			"m" .. button[2] .. "Left", "m" .. button[3] .. "Left", "m" .. button[4] .. "Left", 
+			"m" .. button[2] .. "1", "m" .. button[3] .. "1", "m" .. button[4] .. "1"} %}	
+		{{- setAction('stop', stopValues) }}
+	{% endcall %}
+	{# endcall setEnv #}
+	{% endcall %}	
+	{# endcall nutshell #}
+{% endblock %}
+{# endblock cursorRightButton1 #}
 
+{% block cursorRightButton2 %}
+	{%- call (key, button) setEnv() %}
+	{%+ call nutshell("m".. button[2] .. "Bg", key[2], "onBeginStartNStopN", "onBegin") %}
+		<bind role="start" component="{{"m" .. button[2] .. "Right"}}"/>
+		{% set stopValues = {"m" .. button[1] .. "Right", "m" .. button[3] .. "Right", "m" .. button[4] .. "Right", 
+			"m" .. button[1] .. "Left", "m" .. button[3] .. "Left", "m" .. button[4] .. "Left", 
+			"m" .. button[1] .. "1", "m" .. button[3] .. "1", "m" .. button[4] .. "1"} %}	
+		{{- setAction('stop', stopValues) }}
+	{% endcall %}
+	{# endcall setEnv #}
+	{% endcall %}
+	{# endcall nutshell #}
+{% endblock %}
+{# endblock cursorRightButton2 #}
 
+{% block cursorRightButton3 %}
+	{%- call (key, button) setEnv() %}
+	{%+ call nutshell("m".. button[3] .. "Bg", key[3], "onBeginStartNStopN", "onBegin") %}
+		<bind role="start" component="{{"m" .. button[3] .. "Right"}}"/>
+		{% set stopValues = {"m" .. button[1] .. "Right", "m" .. button[2] .. "Right", "m" .. button[4] .. "Right", 
+			"m" .. button[1] .. "Left", "m" .. button[2] .. "Left", "m" .. button[4] .. "Left", 
+			"m" .. button[1] .. "1", "m" .. button[2] .. "1", "m" .. button[4] .. "1"} %}	
+		{{- setAction('stop', stopValues) }}
+	{% endcall %}
+	{# endcall setEnv #}
+	{% endcall %}
+	{# endcall nutshell #}
+{% endblock %}
+{# endblock cursorRightButton3 #}
 
-
+{% block cursorRightButton4 %}
+	{%- call (key, button) setEnv() %}
+	{%+ call nutshell("m".. button[4] .. "Bg", key[4], "onBeginStartNStopN", "onBegin") %}
+		<bind role="start" component="{{"m" .. button[4] .. "Right"}}"/>
+		{% set stopValues = {"m" .. button[1] .. "Right", "m" .. button[2] .. "Right", "m" .. button[3] .. "Right", 
+			"m" .. button[1] .. "Left", "m" .. button[2] .. "Left", "m" .. button[3] .. "Left", 
+			"m" .. button[1] .. "1", "m" .. button[2] .. "1", "m" .. button[3] .. "1"} %}	
+		{{- setAction('stop', stopValues) }}
+	{% endcall %}
+	{# endcall setEnv #}
+	{% endcall %}
+	{# endcall nutshell #}
+{% endblock %}
+{# endblock cursorRightButton4 #}
 
 {% block buttons %}
 	{% set key = {'RED', 'GREEN', 'YELLOW', 'BLUE'} %}
 	{% for i in	 files_list.buttons %}
-	{% call nutshell("m".. i.name, colors[loop.index], "onKeySelectionStartNStopN") %}
+	{% call nutshell("m".. i.name, colors[loop.index], "onKeySelectionStartNStopN", "onSelection") %}
 			{%- set values = {'m' .. i.name, 'm' .. i.name .. 'Title'} %} 
 			{{- setAction('stop', values) }}
 			<bind role="start" component="mReg"/>

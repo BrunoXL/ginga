@@ -1,7 +1,9 @@
-{% macro nutshell(component, link_param, connector) %}
+{% macro nutshell(component, link_param, connector, role) %}
 		<link xconnector="{{'conBase#' .. connector}}">
-			<bind role="onSelection" component="{{component}}"/>
+			<bind role="{{role}}" component="{{component}}"/>
+		{%if link_param ~= nil%}
 			<linkParam name="keyCode" value="{{link_param}}"/>
+		{% endif %}
 			{{ caller () }}	
 		</link>
 {% endmacro %}

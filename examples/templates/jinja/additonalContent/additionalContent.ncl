@@ -345,6 +345,7 @@
 			<bind role="stop" component="mRedTitle1"/>
 			<bind role="stop" component="mRedBg"/>
 			<bind role="stop" component="mRedInfo"/>
+			<bind role="stop" component="mRedRight"/>
 		
 			<bind role="stop" component="mGreen"/>
 			<bind role="stop" component="mGreen1"/>
@@ -352,6 +353,7 @@
 			<bind role="stop" component="mGreenTitle1"/>
 			<bind role="stop" component="mGreenBg"/>
 			<bind role="stop" component="mGreenInfo"/>
+			<bind role="stop" component="mGreenRight"/>
 		
 			<bind role="stop" component="mYellow"/>
 			<bind role="stop" component="mYellow1"/>
@@ -359,6 +361,7 @@
 			<bind role="stop" component="mYellowTitle1"/>
 			<bind role="stop" component="mYellowBg"/>
 			<bind role="stop" component="mYellowInfo"/>
+			<bind role="stop" component="mYellowRight"/>
 		
 			<bind role="stop" component="mBlue"/>
 			<bind role="stop" component="mBlue1"/>
@@ -366,6 +369,7 @@
 			<bind role="stop" component="mBlueTitle1"/>
 			<bind role="stop" component="mBlueBg"/>
 			<bind role="stop" component="mBlueInfo"/>
+			<bind role="stop" component="mBlueRight"/>
 		
 			<bind role="stop" component="mExit"/>	
 			<bind role="stop" component="mReg"/>
@@ -395,21 +399,21 @@
 			<bind role="stop" component="mBlueBg"/>
 			<bind role="stop" component="mBlueInfo"/>
 					
-			<bind role="start" component="mRed1"/>
+			<bind role="start" component="mRed"/>
 			<bind role="start" component="mRedTitle"/>
 					
-			<bind role="start" component="mGreen1"/>
+			<bind role="start" component="mGreen"/>
 			<bind role="start" component="mGreenTitle"/>
 					
-			<bind role="start" component="mYellow1"/>
+			<bind role="start" component="mYellow"/>
 			<bind role="start" component="mYellowTitle"/>
 					
-			<bind role="start" component="mBlue1"/>
+			<bind role="start" component="mBlue"/>
 			<bind role="start" component="mBlueTitle"/>
 					
 	
 		</link>
-					<link xconnector="conBase#onKeySelectionStartNStopN">
+					<link xconnector="conBase#onKeySelectionStopNStartN">
 			<bind role="onSelection" component="mRed"/>
 			<linkParam name="keyCode" value="RED"/>
 						<bind role="stop" component="mRed"/>
@@ -422,7 +426,7 @@
 			<bind role="start" component="mRedInfo"/>	
 			
 		</link>
-				<link xconnector="conBase#onKeySelectionStartNStopN">
+				<link xconnector="conBase#onKeySelectionStopNStartN">
 			<bind role="onSelection" component="mGreen"/>
 			<linkParam name="keyCode" value="GREEN"/>
 						<bind role="stop" component="mRed"/>
@@ -441,7 +445,7 @@
 			<bind role="start" component="mGreenInfo"/>	
 			
 		</link>
-				<link xconnector="conBase#onKeySelectionStartNStopN">
+				<link xconnector="conBase#onKeySelectionStopNStartN">
 			<bind role="onSelection" component="mYellow"/>
 			<linkParam name="keyCode" value="YELLOW"/>
 						<bind role="stop" component="mRed"/>
@@ -466,7 +470,7 @@
 			<bind role="start" component="mYellowInfo"/>	
 			
 		</link>
-				<link xconnector="conBase#onKeySelectionStartNStopN">
+				<link xconnector="conBase#onKeySelectionStopNStartN">
 			<bind role="onSelection" component="mBlue"/>
 			<linkParam name="keyCode" value="BLUE"/>
 						<bind role="stop" component="mRed"/>
@@ -560,6 +564,74 @@
 			<bind role="start" component="mGreen"/>
 			<bind role="start" component="mGreenTitle"/>
 	
+	
+		</link>
+
+				<link xconnector="conBase#onBeginStartNStopN">
+			<bind role="onBegin" component="mRedBg"/>
+			<linkParam name="keyCode" value="RED"/>
+					<bind role="start" component="mRedRight"/>
+			<bind role="stop" component="mGreenRight"/>
+			<bind role="stop" component="mYellowRight"/>
+			<bind role="stop" component="mBlueRight"/>
+			<bind role="stop" component="mGreenLeft"/>
+			<bind role="stop" component="mYellowLeft"/>
+			<bind role="stop" component="mBlueLeft"/>
+			<bind role="stop" component="mGreen1"/>
+			<bind role="stop" component="mYellow1"/>
+			<bind role="stop" component="mBlue1"/>
+
+	
+		</link>
+
+				<link xconnector="conBase#onBeginStartNStopN">
+			<bind role="onBegin" component="mGreenBg"/>
+			<linkParam name="keyCode" value="GREEN"/>
+					<bind role="start" component="mGreenRight"/>
+			<bind role="stop" component="mRedRight"/>
+			<bind role="stop" component="mYellowRight"/>
+			<bind role="stop" component="mBlueRight"/>
+			<bind role="stop" component="mRedLeft"/>
+			<bind role="stop" component="mYellowLeft"/>
+			<bind role="stop" component="mBlueLeft"/>
+			<bind role="stop" component="mRed1"/>
+			<bind role="stop" component="mYellow1"/>
+			<bind role="stop" component="mBlue1"/>
+
+	
+		</link>
+
+				<link xconnector="conBase#onBeginStartNStopN">
+			<bind role="onBegin" component="mYellowBg"/>
+			<linkParam name="keyCode" value="YELLOW"/>
+					<bind role="start" component="mYellowRight"/>
+			<bind role="stop" component="mRedRight"/>
+			<bind role="stop" component="mGreenRight"/>
+			<bind role="stop" component="mBlueRight"/>
+			<bind role="stop" component="mRedLeft"/>
+			<bind role="stop" component="mGreenLeft"/>
+			<bind role="stop" component="mBlueLeft"/>
+			<bind role="stop" component="mRed1"/>
+			<bind role="stop" component="mGreen1"/>
+			<bind role="stop" component="mBlue1"/>
+
+	
+		</link>
+
+				<link xconnector="conBase#onBeginStartNStopN">
+			<bind role="onBegin" component="mBlueBg"/>
+			<linkParam name="keyCode" value="BLUE"/>
+					<bind role="start" component="mBlueRight"/>
+			<bind role="stop" component="mRedRight"/>
+			<bind role="stop" component="mGreenRight"/>
+			<bind role="stop" component="mYellowRight"/>
+			<bind role="stop" component="mRedLeft"/>
+			<bind role="stop" component="mGreenLeft"/>
+			<bind role="stop" component="mYellowLeft"/>
+			<bind role="stop" component="mRed1"/>
+			<bind role="stop" component="mGreen1"/>
+			<bind role="stop" component="mYellow1"/>
+
 	
 		</link>
 
