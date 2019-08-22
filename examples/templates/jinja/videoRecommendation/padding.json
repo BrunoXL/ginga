@@ -1,0 +1,9 @@
+{
+    "primary" : "mainVideo.mp4",
+    "secondary": [
+            "video1.mp4", "video2.mp4", "video3.mp4", "video4.mp4", "video5.mp4"
+    ],
+    "images": [
+            "image1.jpg", "image2.jpg", "image3.jpg", "image4.jpg", "image5.jpg"
+    ]
+}

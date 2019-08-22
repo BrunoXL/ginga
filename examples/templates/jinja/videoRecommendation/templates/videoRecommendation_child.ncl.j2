@@ -1,0 +1,120 @@
+{% extends "videoRecommendation_base.ncl.j2" %}
+{% include "macros.j2" %}
+{% block contexts %}
+    {% for i in range(#files_list.secondary-2) %}
+        {% set pos = {'Left', 'Center', 'Right'} %}
+        {% set suffix = loop.index .. loop.index+1 .. loop.index+2 %} 
+
+        <context id="{{'ctx' .. suffix}}">
+        {% for i in range(3) %}
+            <port id="{{'startm' .. pos[i] .. suffix}}" component="{{'m' .. pos[i] .. suffix}}"/> 
+        {% endfor %}
+
+            <media id="{{'m' .. pos[1] .. suffix}}" src="{{'media/' .. files_list.images[loop.index]}}" descriptor="desRegion1"/>
+            <media id="{{'m' .. pos[2] .. suffix}}" src="{{'media/' .. files_list.images[loop.index+1]}}" descriptor="desRegion2"/>
+            <media id="{{'m' .. pos[3] .. suffix}}" src="{{'media/' .. files_list.images[loop.index+2]}}" descriptor="desRegion3"/>
+            <media id="{{'m' .. 'MainVideo' .. suffix}}" refer="mMainVideo" instance="instSame"/> 
+            <media id="{{'mNodeSettings' .. suffix}}" type="application/x-ginga-settings"> 
+                <property name="service.currentFocus"/>
+                <property name="selected"/>
+                <property name="direction"/>
+            </media>
+            <switch id="{{'videos' .. suffix}}">        
+            {{+ setSwitch({loop.index, loop.index+1, loop.index+2}, {'_1', '_2', '_3'})-}}
+            </switch>
+
+        {% set condition_components = {onSelection={'mLeft' .. suffix, 'mCenter' .. suffix, 'mRight' .. suffix}} %}
+        {% set actions = {'set', 'stop', 'start'} %}
+        {% set action_components = {set={media={'mNodeSettings' .. suffix, {bind_param={name='var', value='true'},
+            interface='selected'}}}, stop={'mLeft' .. suffix, 'mCenter' .. suffix, 'mRight' .. suffix, 'mMainVideo' .. suffix}, 
+            start={'videos' .. suffix}} %}
+        {{- setLink("lPickupVideo" .. suffix, "onKeySelectionStopNStartNSet", nil, {'onSelection'}, 
+            condition_components, actions, action_components) }}
+
+        {% set nextContext = loop.index+1 .. loop.index+2 .. loop.index+3  %}
+        {% set previousContext = loop.index-1 .. loop.index .. loop.index+1  %}
+        {% set action = {'set', 'stop'} %}
+        {% if loop.index == 1 %}    
+            {% set link_param = {name="keyCode", value="CURSOR_RIGHT"} %}
+            {% set condition_components = {onSelection={'mRight' .. suffix}, shift={media={'mNodeSettings' .. suffix, 
+            {bind_param={name='focusValue', value='3'}, interface='service.currentFocus'}}}} %}
+            {% set action_components = {set={media={'mNodeSettings' .. suffix, {bind_param={name='setValue', value='right'},
+            interface='direction'}}}, stop={'ctx' .. suffix}} %}
+            {{- setLink("lSetCtx" .. nextContext  .."Right", "onKeySelectionTestStopNSetN", link_param, {'onSelection'},
+               condition_components, actions, action_components) }}
+        {% elseif loop.index == loop.length %}
+            {% set link_param = {name="keyCode", value="CURSOR_LEFT"} %}
+                    {% set link_param = {name="keyCode", value="CURSOR_LEFT"} %}
+            {% set condition_components = {onSelection={'mLeft' .. suffix}, shift={media={'mNodeSettings' .. suffix, 
+            {bind_param={name='focusValue', value='1'}, interface='service.currentFocus'}}}} %}
+            {% set action_components = {set={media={'mNodeSettings' .. suffix, {bind_param={name='setValue', value='left'},
+            interface='direction'}}}, stop={'ctx' .. suffix}} %}
+            {{- setLink("lSetCtx" .. previousContext  .."Left", "onKeySelectionTestStopNSetN", link_param, {'onSelection'},
+               condition_components, actions, action_components) }}
+        {% elseif loop.index > 1 and loop.index < loop.length %}
+            {% set link_param = {name="keyCode", value="CURSOR_RIGHT"} %}
+            {% set condition_components = {onSelection={'mRight' .. suffix}, shift={media={'mNodeSettings' .. suffix, 
+            {bind_param={name='focusValue', value='3'}, interface='service.currentFocus'}}}} %}
+            {% set action_components = {set={media={'mNodeSettings' .. suffix, {bind_param={name='setValue', value='right'},
+            interface='direction'}}}, stop={'ctx' .. suffix}} %}
+            {{- setLink("lSetCtx" .. nextContext  .."Right", "onKeySelectionTestStopNSetN", link_param, {'onSelection'},
+               condition_components, actions, action_components) }}
+
+            {% set link_param = {name="keyCode", value="CURSOR_LEFT"} %}
+            {% set condition_components = {onSelection={'mLeft' .. suffix}, shift={media={'mNodeSettings' .. suffix, 
+            {bind_param={name='focusValue', value='1'}, interface='service.currentFocus'}}}} %}
+            {% set action_components = {set={media={'mNodeSettings' .. suffix, {bind_param={name='setValue', value='left'},
+            interface='direction'}}}, stop={'ctx' .. suffix}} %}
+            {{- setLink("lSetCtx" .. previousContext  .."Left", "onKeySelectionTestStopNSetN", link_param, {'onSelection'},
+               condition_components, actions, action_components) }}
+        {% endif %} 
+        </context>
+    {% endfor %}   
+{% endblock %}
+{# endblock contexts #}
+{% block externalLinks %}
+    {% for i in range(#files_list.secondary-2) %}
+        {% set nextContext = loop.index+1 .. loop.index+2 .. loop.index+3  %}
+        {% set previousContext = loop.index-1 .. loop.index .. loop.index+1  %}
+        {% set suffix = loop.index .. loop.index+1 .. loop.index+2 %}
+        {% set action = {'start'} %}
+    {% if loop.index == 1 %} 
+        {% set conditions = {'onEnd', 'attNodeTest','attNodeTest2'} %}
+        {% set condition_components = {onEnd={'ctx'.. suffix}, attNodeTest={media={'mNodeSettings', {bind_param=
+        {name='value', value='false'}, interface='selected'}}}, attNodeTest2={media={'mNodeSettings', {bind_param=
+        {name='value2', value='right'}, interface='direction'}}}} %}
+        {% set action_components = {start={'ctx' .. nextContext}} %}
+        {{- setLink("lStartCtx" .. nextContext  .. "Right", "onEndAttNodeTestStartN", link_param, {'onSelection'},
+        condition_components, actions, action_components) }}
+        
+    {% elseif loop.index == loop.length %}
+        {% set conditions = {'onEnd', 'attNodeTest','attNodeTest2', 'set'} %}
+        {% set condition_components = {onEnd={'ctx'.. suffix}, attNodeTest={media={'mNodeSettings', {bind_param=
+        {name='value', value='false'}, interface='selected'}}}, attNodeTest2={media={'mNodeSettings', {bind_param=
+        {name='value2', value='left'}, interface='direction'}}}, set={media={'mNodeSettings', {bind_param={name=
+        'setValue', value="3"}, interface='service.currentFocus'}}}} %}
+        {% set action_components = {start={'ctx' .. previousContext}} %}
+        {{- setLink("lStartCtx" .. previousContext  .. "Left", "onEndAttNodeTestStartNSet", link_param, {'onSelection'},
+        condition_components, actions, action_components) }}
+    {% elseif loop.index > 1 and loop.index < loop.length %}    
+        {% set conditions = {'onEnd', 'attNodeTest','attNodeTest2'} %}
+        {% set condition_components = {onEnd={'ctx'.. suffix}, attNodeTest={media={'mNodeSettings', {bind_param=
+        {name='value', value='false'}, interface='selected'}}}, attNodeTest2={media={'mNodeSettings', {bind_param=
+        {name='value2', value='right'}, interface='direction'}}}} %}
+        {% set action_components = {start={'ctx' .. nextContext}} %}  
+        {{- setLink("lStartCtx" .. nextContext  .. "Right", "onEndAttNodeTestStartN", link_param, {'onSelection'},
+        condition_components, actions, action_components) }} 
+
+        {% set conditions = {'onEnd', 'attNodeTest','attNodeTest2', 'set'} %}
+        {% set condition_components = {onEnd={'ctx'.. suffix}, attNodeTest={media={'mNodeSettings', {bind_param=
+        {name='value', value='false'}, interface='selected'}}}, attNodeTest2={media={'mNodeSettings', {bind_param=
+        {name='value2', value='left'}, interface='direction'}}}, set={media={'mNodeSettings', {bind_param={name=
+        'setValue', value="3"}, interface='service.currentFocus'}}}} %}
+        {% set action_components = {start={'ctx' .. previousContext}} %}
+        {{- setLink("lStartCtx" .. previousContext  .. "Left", "onEndAttNodeTestStartNSet", link_param, {'onSelection'},
+        condition_components, actions, action_components) }}
+
+    {% endif %}
+    {% endfor %}
+{% endblock %}
+{# endblock externalLinks #}

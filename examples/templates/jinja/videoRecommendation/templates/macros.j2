@@ -1,0 +1,36 @@
+{% macro setLink(id, connector, link_param, conditions, condition_components, 
+                actions, action_components) %}
+            <link id="{{id}}" xconnector="{{'conBase#' .. connector}}">
+    {% if link_param ~= nil %}
+            <linkParam name="{{link_param.name}}" value="{{link_param.value}}"/>
+    {% endif %}    
+            {{- setRole( condition_components) -}}
+            {{- setRole( action_components) -}}
+            </link>
+{%- endmacro %}
+{# endmacro setLink #}
+{% macro setRole(components) %}
+    {%+ for role, value in pairs(components) %}
+        {% if value.media == nil %}
+            {% for i in value %}
+            <bind role="{{role}}" component="{{i}}"/>
+            {% endfor %}
+        {% else %}
+            {% for media,value2 in pairs(value) %}
+            <bind role="{{role}}" component="{{value2[1]}}" interface="{{value2[2].interface}}">
+                <bindParam name="{{value2[2].bind_param.name}}" value="{{value2[2].bind_param.value}}"/>
+             </bind>
+            {% endfor %}    
+        {% endif %}
+    {% endfor %}
+{% endmacro %}
+{# endmacro setRole #}
+{%+ macro setSwitch(values, marker) %}
+    {% for index,value in ipairs(values) %}
+                <bindRule constituent="{{'selectionVideo' .. value .. marker[index]}}" rule="{{'ruleFocus' .. index}}"/>
+    {% endfor %}
+    {% for index,value in ipairs(values) %}
+                <media id="{{'selectionVideo' .. value .. marker[index]}}" src="{{'media/video' .. value .. '.mp4'}}" descriptor="desMainVideo"/>
+    {% endfor %}
+{% endmacro %}
+{# endmacro setSwitch #}  

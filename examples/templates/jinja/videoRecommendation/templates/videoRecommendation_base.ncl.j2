@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!--An NCL video Recommendation example with embedded Jinja2 template-->
+<ncl>
+    <head>
+        <connectorBase>
+            <importBase documentURI="connectorBase.ncl" alias="conBase"/>
+        </connectorBase>
+        <ruleBase>
+            <rule id="ruleFocus1" var="service.currentFocus" value="1" comparator="eq"/>
+            <rule id="ruleFocus2" var="service.currentFocus" value="2" comparator="eq"/>
+            <rule id="ruleFocus3" var="service.currentFocus" value="3" comparator="eq"/>
+        </ruleBase> 
+        <regionBase>
+            <region id="rKeepAlive" width="100%" height="100%" zIndex="1"/>
+            <region id="rMain" width="100%" height="100%" zIndex="2"/>
+            <region id="rLeft" top="80%" left="10%" width="20%" height="15%" zIndex="3"/>
+            <region id="rCenter" top="80%" left="40%" width="20%" height="15%" zIndex="3"/>
+            <region id="rRight" top="80%" left="70%" width="20%" height="15%" zIndex="3"/>
+        </regionBase>
+        <descriptorBase>
+            <descriptor id="desMainVideo" region="rMain"/>
+            <descriptor id="desKeepAlive" region="rKeepAlive"/>
+            <descriptor id="desRegion1" region="rLeft"
+                focusIndex="1" moveRight="2" />
+            <descriptor id="desRegion2" region="rCenter"
+                focusIndex="2" moveLeft="1" moveRight="3"/>
+            <descriptor id="desRegion3" region="rRight"
+                focusIndex="3" moveLeft="2"/>
+        </descriptorBase>
+    </head>
+    <body>
+        <port id="start" component="mMainVideo"/>
+        <port id="start2" component="mKeepAlive"/>
+
+        <media id="mMainVideo" src="{{'media/' .. files_list.primary}}" descriptor="desMainVideo"/>
+        <media id="mNodeSettings" type="application/x-ginga-settings">
+            <property name="service.currentFocus"/>
+            <property name="selected" value="false"/>
+            <property name="direction" value="right"/>
+        </media>
+
+        <media id="mKeepAlive" src="media/background.jpg" descriptor="desKeepAlive" />
+        {% block contexts %} {% endblock %}
+
+        <link id="lBeginCtx123" xconnector="conBase#onBeginStart">
+            <bind role="onBegin" component="mMainVideo"/>
+            <bind role="start" component="ctx123"/>
+        </link>
+
+        {% block externalLinks %} {% endblock %}
+    </body>
+</ncl>
