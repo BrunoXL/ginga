@@ -16,7 +16,7 @@
             <bind role="{{role}}" component="{{i}}"/>
             {% endfor %}
         {% else %}
-            {% for media,value2 in pairs(value) %}
+            {% for media, value2 in pairs(value) %}
             <bind role="{{role}}" component="{{value2[1]}}" interface="{{value2[2].interface}}">
                 <bindParam name="{{value2[2].bind_param.name}}" value="{{value2[2].bind_param.value}}"/>
              </bind>

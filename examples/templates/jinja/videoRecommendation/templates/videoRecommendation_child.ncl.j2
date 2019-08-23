@@ -44,11 +44,11 @@
                condition_components, actions, action_components) }}
         {% elseif loop.index == loop.length %}
             {% set link_param = {name="keyCode", value="CURSOR_LEFT"} %}
-                    {% set link_param = {name="keyCode", value="CURSOR_LEFT"} %}
             {% set condition_components = {onSelection={'mLeft' .. suffix}, shift={media={'mNodeSettings' .. suffix, 
             {bind_param={name='focusValue', value='1'}, interface='service.currentFocus'}}}} %}
             {% set action_components = {set={media={'mNodeSettings' .. suffix, {bind_param={name='setValue', value='left'},
-            interface='direction'}}}, stop={'ctx' .. suffix}} %}
+            interface='direction'}}, {'mNodeSettings' .. suffix, {bind_param={name='setValue', value='3'},
+            interface='service.currentFocus'}}} , stop={'ctx' .. suffix}} %}
             {{- setLink("lSetCtx" .. previousContext  .."Left", "onKeySelectionTestStopNSetN", link_param, {'onSelection'},
                condition_components, actions, action_components) }}
         {% elseif loop.index > 1 and loop.index < loop.length %}
@@ -64,7 +64,8 @@
             {% set condition_components = {onSelection={'mLeft' .. suffix}, shift={media={'mNodeSettings' .. suffix, 
             {bind_param={name='focusValue', value='1'}, interface='service.currentFocus'}}}} %}
             {% set action_components = {set={media={'mNodeSettings' .. suffix, {bind_param={name='setValue', value='left'},
-            interface='direction'}}}, stop={'ctx' .. suffix}} %}
+            interface='direction'}}, {'mNodeSettings' .. suffix, {bind_param={name='setValue', value='3'},
+            interface='service.currentFocus'}}} , stop={'ctx' .. suffix}} %}
             {{- setLink("lSetCtx" .. previousContext  .."Left", "onKeySelectionTestStopNSetN", link_param, {'onSelection'},
                condition_components, actions, action_components) }}
         {% endif %} 
@@ -76,8 +77,8 @@
     {% for i in range(#files_list.secondary-2) %}
         {% set nextContext = loop.index+1 .. loop.index+2 .. loop.index+3  %}
         {% set previousContext = loop.index-1 .. loop.index .. loop.index+1  %}
-        {% set suffix = loop.index .. loop.index+1 .. loop.index+2 %}
         {% set action = {'start'} %}
+        {% set suffix = loop.index .. loop.index+1 .. loop.index+2 %}
     {% if loop.index == 1 %} 
         {% set conditions = {'onEnd', 'attNodeTest','attNodeTest2'} %}
         {% set condition_components = {onEnd={'ctx'.. suffix}, attNodeTest={media={'mNodeSettings', {bind_param=
@@ -93,6 +94,7 @@
         {name='value', value='false'}, interface='selected'}}}, attNodeTest2={media={'mNodeSettings', {bind_param=
         {name='value2', value='left'}, interface='direction'}}}, set={media={'mNodeSettings', {bind_param={name=
         'setValue', value="3"}, interface='service.currentFocus'}}}} %}
+        {% set action = {'start', 'set'} %}
         {% set action_components = {start={'ctx' .. previousContext}} %}
         {{- setLink("lStartCtx" .. previousContext  .. "Left", "onEndAttNodeTestStartNSet", link_param, {'onSelection'},
         condition_components, actions, action_components) }}
@@ -110,6 +112,7 @@
         {name='value', value='false'}, interface='selected'}}}, attNodeTest2={media={'mNodeSettings', {bind_param=
         {name='value2', value='left'}, interface='direction'}}}, set={media={'mNodeSettings', {bind_param={name=
         'setValue', value="3"}, interface='service.currentFocus'}}}} %}
+        {% set action = {'start', 'set'} %}
         {% set action_components = {start={'ctx' .. previousContext}} %}
         {{- setLink("lStartCtx" .. previousContext  .. "Left", "onEndAttNodeTestStartNSet", link_param, {'onSelection'},
         condition_components, actions, action_components) }}

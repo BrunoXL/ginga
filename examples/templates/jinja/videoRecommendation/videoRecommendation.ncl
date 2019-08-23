@@ -68,14 +68,14 @@
                 <bind role="onSelection" component="mLeft123"/>
             <bind role="onSelection" component="mCenter123"/>
             <bind role="onSelection" component="mRight123"/>
-                <bind role="set" component="mNodeSettings123" interface="selected">
-                <bindParam name="var" value="true"/>
-             </bind>
-            <bind role="start" component="videos123"/>
-            <bind role="stop" component="mLeft123"/>
+                <bind role="stop" component="mLeft123"/>
             <bind role="stop" component="mCenter123"/>
             <bind role="stop" component="mRight123"/>
             <bind role="stop" component="mMainVideo123"/>
+            <bind role="start" component="videos123"/>
+            <bind role="set" component="mNodeSettings123" interface="selected">
+                <bindParam name="var" value="true"/>
+             </bind>
             </link>
 
             <link id="lSetCtx234Right" xconnector="conBase#onKeySelectionTestStopNSetN">
@@ -118,14 +118,14 @@
                 <bind role="onSelection" component="mLeft234"/>
             <bind role="onSelection" component="mCenter234"/>
             <bind role="onSelection" component="mRight234"/>
-                <bind role="set" component="mNodeSettings234" interface="selected">
-                <bindParam name="var" value="true"/>
-             </bind>
-            <bind role="start" component="videos234"/>
-            <bind role="stop" component="mLeft234"/>
+                <bind role="stop" component="mLeft234"/>
             <bind role="stop" component="mCenter234"/>
             <bind role="stop" component="mRight234"/>
             <bind role="stop" component="mMainVideo234"/>
+            <bind role="start" component="videos234"/>
+            <bind role="set" component="mNodeSettings234" interface="selected">
+                <bindParam name="var" value="true"/>
+             </bind>
             </link>
 
             <link id="lSetCtx345Right" xconnector="conBase#onKeySelectionTestStopNSetN">
@@ -146,10 +146,13 @@
                 <bindParam name="focusValue" value="1"/>
              </bind>
             <bind role="onSelection" component="mLeft234"/>
-                <bind role="stop" component="ctx234"/>
+            <bind role="set" component="mNodeSettings234" interface="service.currentFocus">
+                <bindParam name="setValue" value="3"/>
+            </bind>
             <bind role="set" component="mNodeSettings234" interface="direction">
                 <bindParam name="setValue" value="left"/>
-             </bind>
+            </bind>
+            <bind role="stop" component="ctx234"/>
             </link>
         </context>
 
@@ -180,14 +183,14 @@
                 <bind role="onSelection" component="mLeft345"/>
             <bind role="onSelection" component="mCenter345"/>
             <bind role="onSelection" component="mRight345"/>
-                <bind role="set" component="mNodeSettings345" interface="selected">
-                <bindParam name="var" value="true"/>
-             </bind>
-            <bind role="start" component="videos345"/>
-            <bind role="stop" component="mLeft345"/>
+                <bind role="stop" component="mLeft345"/>
             <bind role="stop" component="mCenter345"/>
             <bind role="stop" component="mRight345"/>
             <bind role="stop" component="mMainVideo345"/>
+            <bind role="start" component="videos345"/>
+            <bind role="set" component="mNodeSettings345" interface="selected">
+                <bindParam name="var" value="true"/>
+             </bind>
             </link>
 
             <link id="lSetCtx234Left" xconnector="conBase#onKeySelectionTestStopNSetN">
@@ -197,6 +200,9 @@
              </bind>
             <bind role="onSelection" component="mLeft345"/>
                 <bind role="stop" component="ctx345"/>
+            <bind role="set" component="mNodeSettings345" interface="service.currentFocus">
+                <bindParam name="setValue" value="3"/>
+             </bind>
             <bind role="set" component="mNodeSettings345" interface="direction">
                 <bindParam name="setValue" value="left"/>
              </bind>
@@ -209,51 +215,51 @@
         </link>
 
             <link id="lStartCtx234Right" xconnector="conBase#onEndAttNodeTestStartN">
-                <bind role="attNodeTest" component="mNodeSettings" interface="selected">
-                <bindParam name="value" value="false"/>
-             </bind>
-            <bind role="onEnd" component="ctx123"/>
+                <bind role="onEnd" component="ctx123"/>
             <bind role="attNodeTest2" component="mNodeSettings" interface="direction">
                 <bindParam name="value2" value="right"/>
+             </bind>
+            <bind role="attNodeTest" component="mNodeSettings" interface="selected">
+                <bindParam name="value" value="false"/>
              </bind>
                 <bind role="start" component="ctx234"/>
             </link>
         
             <link id="lStartCtx345Right" xconnector="conBase#onEndAttNodeTestStartN">
-                <bind role="attNodeTest" component="mNodeSettings" interface="selected">
-                <bindParam name="value" value="false"/>
-             </bind>
-            <bind role="onEnd" component="ctx234"/>
+                <bind role="onEnd" component="ctx234"/>
             <bind role="attNodeTest2" component="mNodeSettings" interface="direction">
                 <bindParam name="value2" value="right"/>
+             </bind>
+            <bind role="attNodeTest" component="mNodeSettings" interface="selected">
+                <bindParam name="value" value="false"/>
              </bind>
                 <bind role="start" component="ctx345"/>
             </link> 
 
             <link id="lStartCtx123Left" xconnector="conBase#onEndAttNodeTestStartNSet">
-                <bind role="attNodeTest" component="mNodeSettings" interface="selected">
-                <bindParam name="value" value="false"/>
-             </bind>
+                <bind role="onEnd" component="ctx234"/>
             <bind role="set" component="mNodeSettings" interface="service.currentFocus">
                 <bindParam name="setValue" value="3"/>
              </bind>
-            <bind role="onEnd" component="ctx234"/>
             <bind role="attNodeTest2" component="mNodeSettings" interface="direction">
                 <bindParam name="value2" value="left"/>
+             </bind>
+            <bind role="attNodeTest" component="mNodeSettings" interface="selected">
+                <bindParam name="value" value="false"/>
              </bind>
                 <bind role="start" component="ctx123"/>
             </link>
 
             <link id="lStartCtx234Left" xconnector="conBase#onEndAttNodeTestStartNSet">
-                <bind role="attNodeTest" component="mNodeSettings" interface="selected">
-                <bindParam name="value" value="false"/>
-             </bind>
+                <bind role="onEnd" component="ctx345"/>
             <bind role="set" component="mNodeSettings" interface="service.currentFocus">
                 <bindParam name="setValue" value="3"/>
              </bind>
-            <bind role="onEnd" component="ctx345"/>
             <bind role="attNodeTest2" component="mNodeSettings" interface="direction">
                 <bindParam name="value2" value="left"/>
+             </bind>
+            <bind role="attNodeTest" component="mNodeSettings" interface="selected">
+                <bindParam name="value" value="false"/>
              </bind>
                 <bind role="start" component="ctx234"/>
             </link>
