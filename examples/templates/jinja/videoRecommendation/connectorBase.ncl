@@ -1860,7 +1860,7 @@
 					<connectorParam name="focusValue"/>
 					<connectorParam name="setValue"/>
 					<compoundCondition operator="and">
-					  <simpleCondition role="onSelection" key="$keyCode"/>
+						<simpleCondition role="onSelection" key="$keyCode" max="unbounded" qualifier="or"/>
 						<assessmentStatement comparator="eq">
 						  <attributeAssessment role="shift"/>
 						  <valueAssessment value="$focusValue"/>
