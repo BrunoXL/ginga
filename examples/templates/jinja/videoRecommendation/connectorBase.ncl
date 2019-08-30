@@ -1338,7 +1338,7 @@
 			<causalConnector id="onKeySelectionStopNStartNSet">
 					<connectorParam name="keyCode"/>
 					<connectorParam name="var"/>
-					<simpleCondition role="onSelection" key="$keyCode"/>
+					<simpleCondition role="onSelection" key="$keyCode" max="unbounded" qualifier="par"/>
 					<compoundAction operator="seq">
 						<simpleAction role="set" value="$var"/>
 						<simpleAction role="stop" max="unbounded" qualifier="par"/>
