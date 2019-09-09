@@ -202,16 +202,13 @@ Formatter::start (const string &file, string *errmsg)
       
       gchar* command = g_strconcat("./ncl_generator.lua", " ", _file.c_str (), " ", _template.c_str (), \
                                   " ", (char *)0);
-      TRACE("comaona is: %s", command);
       for(int i = 0 ;  i < template_names->len; ++i)
       {
         command = g_strconcat(command,  g_ptr_array_index(template_names,i), " ", (char *)0);
-        TRACE("comaona is: %s", command);
       }
       if (debug){
           command = g_strconcat(command, "-d", (char *)0);
       }
-      TRACE("comaona is: %s", command);
       if(system(command) == -1)
       {
         ERROR ("Unable to call command %s", command);
